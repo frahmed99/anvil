@@ -38,6 +38,7 @@
     "dependencies": {
         "@popperjs/core": "^2.11.2",
         "bootstrap-colorpicker": "^3.4.0",
+        "jquery-validation": "^1.19.3",
         "toastr": "^2.1.4"
     }
 }

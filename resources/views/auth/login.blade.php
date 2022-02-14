@@ -88,7 +88,7 @@
         <!-- Main Container -->
         <main id="main-container">
             <!-- Page Content -->
-            <div class="bg-image" style="">
+            <div class="bg-image" style="background-image: url('media/photos/photo34@2x.jpg');">
                 <div class="row mx-0 bg-black-50">
                     <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
                         <div class="p-4">
@@ -124,12 +124,19 @@
                                 <div class="form-floating mb-4">
                                     <input type="text" class="form-control" id="email" name="email"
                                         placeholder="Enter your username">
-                                    <label class="form-label" for="email" value="{{ __('Email') }}" >Email</label>
+                                    <label class="form-label" for="email" value="{{ __('Email') }}">Email</label>
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-floating mb-4">
-                                    <input type="password" class="form-control" id="password"
-                                        name="password" placeholder="Enter your password">
-                                    <label class="form-label" for="password" value="{{ __('Password') }}">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Enter your password">
+                                    <label class="form-label" for="password"
+                                        value="{{ __('Password') }}">Password</label>
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                                    @endif
                                 </div>
                                 <div class="mb-4">
                                     <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold">
@@ -137,11 +144,11 @@
                                     </button>
                                     <div class="mt-4">
                                         <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block"
-                                        href="{{ route('register') }}">
+                                            href="{{ route('register') }}">
                                             Create Account
                                         </a>
                                         <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block"
-                                        href="{{ route('password.request') }}">
+                                            href="{{ route('password.request') }}">
                                             Forgot Password
                                         </a>
                                     </div>

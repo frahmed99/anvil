@@ -49,14 +49,18 @@
                     <div class="content-side content-side-user px-0 py-0">
                         <!-- Visible only in mini mode -->
                         <div class="smini-visible-block animated fadeIn px-3">
-                            <img class="img-avatar img-avatar32" src="{{ Auth::user()->profile_photo_url }}" alt="">
+                            <img class="img-avatar img-avatar32"
+                                src="{{ !empty(Auth::user()->profile_photo_path)? url('media/upload/user_images/' . Auth::user()->profile_photo_path): url('media/upload/default_user.jpg') }}"
+                                alt="">
                         </div>
                         <!-- END Visible only in mini mode -->
 
                         <!-- Visible only in normal mode -->
                         <div class="smini-hidden text-center mx-auto">
                             <a class="img-link" href="javascript:void(0)">
-                                <img class="img-avatar" src="{{ Auth::user()->profile_photo_url }}" alt="">
+                                <img class="img-avatar"
+                                    src="{{ !empty(Auth::user()->profile_photo_path)? url('media/upload/user_images/' . Auth::user()->profile_photo_path): url('media/upload/default_user.jpg') }}"
+                                    alt="">
                             </a>
                             <ul class="list-inline mt-3 mb-0">
                                 <li class="list-inline-item">
@@ -122,7 +126,7 @@
                                 <ul class="nav-main-submenu">
                                     <li class="nav-main-item">
                                         <a class="nav-main-link{{ request()->is('accounts/customer') ? ' active' : '' }}"
-                                            href="#">
+                                            href="{{ route('customer.view') }}">
                                             <span class="nav-main-link-name">Customers</span>
                                         </a>
                                     </li>
@@ -310,7 +314,8 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="nav-main-item{{ request()->is('accounts/settings/*') ? ' open' : '' }}">
+                                    <li
+                                        class="nav-main-item{{ request()->is('accounts/settings/*') ? ' open' : '' }}">
                                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
                                             aria-haspopup="true" aria-expanded="true" href="#">
                                             <span class="nav-main-link-name">Accounts Setup</span>

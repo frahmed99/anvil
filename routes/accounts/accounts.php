@@ -26,3 +26,4 @@ Route::prefix('accounts/settings/product_service_unit')->group(function(){
     Route::post('/store', [ProductServiceUnitController::class, 'store'])->name('product_service_unit.store');
     Route::post('/update', [ProductServiceUnitController::class, 'update'])->name('product_service_unit.update');
 });
+

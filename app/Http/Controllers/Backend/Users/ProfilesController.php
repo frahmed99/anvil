@@ -7,6 +7,8 @@ use App\Models\Profile;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class ProfilesController extends Controller
 {
@@ -20,72 +22,38 @@ class ProfilesController extends Controller
         $id = Auth::user()->id;
         $user = User::find($id);
 
-        return view('backend.users.view_profile',compact('user'));
+        return view('backend.users.view_profile', compact('user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function ProfileEdit()
     {
-        //
+        $id = Auth::user()->id;
+        $editData = User::find($id);
+
+        return view('backend.users.edit_profile', compact('editData'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function ProfileStore(Request $request)
     {
-        //
-    }
+        $data = User::find(Auth::user()->id);
+        $data->first_name = $request->first_name;
+        $data->last_name = $request->last_name;
+        $data->email = $request->email;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Profile $profile)
-    {
-        //
-    }
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            @unlink(public_path('media/upload/user_images' . $data->profile_photo_path));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('media/upload/user_images'), $filename);
+            $data['profile_photo_path'] = $filename;
+        }
+        $data->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Profile $profile)
-    {
-        //
-    }
+        $notification = array(
+            'message' => 'User Updated Successfully',
+            'alert-type' => 'info'
+        );
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Profile $profile)
-    {
-        //
+        return redirect()->route('profile.view')->with($notification);
     }
 }

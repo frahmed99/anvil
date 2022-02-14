@@ -61,11 +61,9 @@ Route::prefix('staff/user')->group(function(){
 
 Route::prefix('staff/profile')->group(function(){
     Route::get('/view', [ProfilesController::class, 'index'])->name('profile.view');
-    Route::get('/create', [ProfilesController::class, 'create'])->name('profile.create');
-    Route::get('/edit/{id}', [ProfilesController::class, 'edit'])->name('profile.edit');
-    Route::get('/destroy/{id}', [ProfilesController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/store', [ProfilesController::class, 'store'])->name('profile.store');
-    Route::post('/update/{id}', [ProfilesController::class, 'update'])->name('profile.update');
+    Route::get('/edit', [ProfilesController::class, 'ProfileEdit'])->name('profile.edit');
+    Route::post('/store', [ProfilesController::class, 'ProfileStore'])->name('profile.store');
+
 });
 
 Route::prefix('setting/companysettings')->group(function(){

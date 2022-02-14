@@ -28,6 +28,11 @@ class TaxesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'tax_name' => 'required|string|max:255|unique:taxes,name',
+            'tax_rate' => 'required|numeric|between:0,100',
+        ]);
+
         $data = new Taxes();
         $data->name = $request->tax_name;
         $data->rate = $request->tax_rate;
@@ -62,9 +67,10 @@ class TaxesController extends Controller
      */
     public function update(Request $data)
     {
-        $id = Taxes::find('id');
+
+        $id = $data->input('id');
         $tax_name = $data->input('edit_tax_name');
-        $tax_type = $data->input('edit_tax_select');
+        $tax_type = $data->input('edit_tax_rate');
         $fire  = Taxes::where('id', $id)
         ->update(
             [

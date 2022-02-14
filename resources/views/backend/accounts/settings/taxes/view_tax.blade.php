@@ -10,7 +10,6 @@
 @section('js_after')
     <!-- jQuery (required for DataTables plugin) -->
     <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-
     <!-- Page JS Plugins -->
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
@@ -22,9 +21,16 @@
     <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-
-    <!-- Page JS Code -->
     <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script src="{{ asset('js/custom/taxes_validation.min.js') }}"></script>
+
+    <script type="text/javascript">
+        @if (count($errors) > 0)
+            $('#editTaxModal-modal').modal('show');
+        @endif
+    </script>
+
 @endsection
 
 @section('admin')
@@ -64,12 +70,16 @@
                                             <input type="text" class="form-control" id="tax_name" name="tax_name"
                                                 placeholder="Tax Name">
                                         </div>
+                                        <span style="color:red">@error('tax_name'){{ $message }} @enderror</span>
+
                                     </div>
                                     <div class="col-md-5">
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="tax_rate" name="tax_rate"
                                                 placeholder="Tax Rate %">
                                         </div>
+                                        <span style="color:red">@error('tax_rate'){{ $message }} @enderror</span>
+
                                     </div>
                                     <div class="col-md-2">
                                         <button type="submit" class="btn btn-alt-success w-100">
@@ -112,7 +122,6 @@
                                                         class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled edit"
                                                         href="#editTaxModal{{ $tax->id }}" data-bs-placement="bottom"
                                                         data-bs-toggle="modal"><i class="fa fa-fw fa-edit"></i></a>
-
                                                     <a type="button"
                                                         class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
@@ -137,7 +146,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="block-content fs-sm">
-                                                            <form action="{{ route('tax.update') }}" method="POST">
+                                                            <form action="{{ route('tax.update') }}" method="POST"
+                                                                class="tax-validation">
                                                                 @csrf
                                                                 <input type="hidden" name="id" value="{{ $tax->id }}">
                                                                 <div class="mb-4">

@@ -108,27 +108,6 @@
                                     <span>Profile</span>
                                     <i class="fa fa-fw fa-user opacity-25"></i>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                    href="javascript:void(0)">
-                                    <span>Inbox</span>
-                                    <i class="fa fa-fw fa-envelope-open opacity-25"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                                    href="javascript:void(0)">
-                                    <span>Invoices</span>
-                                    <i class="fa fa-fw fa-file opacity-25"></i>
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <!-- Toggle Side Overlay -->
-                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                                    href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
-                                    <span>Settings</span>
-                                    <i class="fa fa-fw fa-wrench opacity-25"></i>
-                                </a>
-                                <!-- END Side Overlay -->
-
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
                                     href="{{ route('admin.logout') }}">
