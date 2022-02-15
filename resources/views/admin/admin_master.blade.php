@@ -35,9 +35,9 @@
     <!-- <link rel="stylesheet" id="css-theme" href="{{ mix('/css/themes/corporate.css') }}"> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/css/bootstrap-colorpicker.min.css"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
-        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     @yield('css_after')
 
     <!-- CSRF Token -->
@@ -65,53 +65,43 @@
         @include('admin.body.footer')
     </div>
     <!-- END Page Container -->
-
     <!-- Codebase Core JS -->
     <script src="{{ mix('js/codebase.app.js') }}"></script>
-
     <!-- Laravel Scaffolding JS -->
     <!-- <script src="{{ mix('js/laravel.app.js') }}"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> @yield('js_after')
-    <script>
-        @if (Session::has('message'))
-            toastr.options =
-            {
-            "closeButton" : true,
-            "progressBar" : true
-            }
-            toastr.success("{{ session('message') }}");
-        @endif
+    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/jquery-validation/additional-methods.js') }}"></script>
 
-        @if (Session::has('error'))
-            toastr.options =
-            {
-            "closeButton" : true,
-            "progressBar" : true
-            }
-            toastr.error("{{ session('error') }}");
-        @endif
-
-        @if (Session::has('info'))
-            toastr.options =
-            {
-            "closeButton" : true,
-            "progressBar" : true
-            }
-            toastr.info("{{ session('info') }}");
-        @endif
-
-        @if (Session::has('warning'))
-            toastr.options =
-            {
-            "closeButton" : true,
-            "progressBar" : true
-            }
-            toastr.warning("{{ session('warning') }}");
-        @endif
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('click', '#delete', function(e) {
+                e.preventDefault();
+                var link = $(this).attr('href');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = link
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+            });
+        });
     </script>
 
+    @yield('js_after')
 </body>
 
 </html>

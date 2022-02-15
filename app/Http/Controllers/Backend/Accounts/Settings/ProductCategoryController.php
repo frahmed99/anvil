@@ -33,12 +33,7 @@ class ProductCategoryController extends Controller
         $data->type = $request->category_select;
         $data->color = $request->category_color;
         $data->save();
-
-        $notification = array(
-            'message' => 'Category Inserted Successfully',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('product_service_category.view')->with($notification);
+        return redirect()->route('product_service_category.view')->with('message', 'IT WORKS!');
     }
 
     /**

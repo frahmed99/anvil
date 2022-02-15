@@ -107,7 +107,7 @@
                                                     <div class="fs-sm fw-semibold">{{ $user->email }}</div>
                                                     <div class="block-content block-content-full bg-image"
                                                         style="background-image: url({{ asset('media/photos/photo34.jpg') }})">
-                                                        <img class="img-avatar img-avatar-thumb" src="{{ $user->profile_photo_url }}"
+                                                        <img class="img-avatar img-avatar-thumb" src="{{ !empty($user->profile_photo_path)? url('media/upload/user_images/'.$user->profile_photo_path): url('media/upload/default_user.jpg') }}"
                                                             alt="">
                                                     </div>
                                                     <div class="block-content block-content-full">
@@ -116,7 +116,7 @@
                                                             href="{{ route('user.edit', $user->id) }}">
                                                             <i class="fa fa-fw fa-edit"></i>
                                                         </a>
-                                                        <a type="button" class="btn btn-sm btn-alt-danger me-1 js-bs-tooltip-enabled"
+                                                        <a type="button" class="btn btn-sm btn-alt-danger me-1 js-bs-tooltip-enabled" id="delete"
                                                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete User"
                                                             href="{{ route('user.destroy', $user->id) }}">
                                                             <i class="fa fa-fw fa-times"></i>

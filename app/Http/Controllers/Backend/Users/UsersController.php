@@ -48,7 +48,7 @@ class UsersController extends Controller
         $data->save();
 
         $notification = array(
-            'message' => 'User Inserted Successfully',
+            'message' => 'User Added Successfully',
             'alert-type'=>'success'
         );
 

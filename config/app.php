@@ -160,6 +160,7 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
+        Brian2694\Toastr\ToastrServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
         /*
@@ -234,8 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Currency' => \Torann\Currency\Facades\Currency::class,
-
-
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
     ],
 
 ];

@@ -106,7 +106,7 @@
                                                     <!-- /Delete Category Button -->
                                                     <a type="button"
                                                         class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled"
-                                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="" id ="delete"
                                                         data-bs-original-title="Delete Category"
                                                         href="{{ route('product_service_category.destroy', $unit->id) }}">
                                                         <i class="fa fa-fw fa-times"></i>
