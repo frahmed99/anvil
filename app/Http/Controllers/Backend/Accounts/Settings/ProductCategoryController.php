@@ -33,7 +33,12 @@ class ProductCategoryController extends Controller
         $data->type = $request->category_select;
         $data->color = $request->category_color;
         $data->save();
-        return redirect()->route('product_service_category.view')->with('message', 'IT WORKS!');
+        $notification = array(
+            'message' => 'Tax Deleted Successfully',
+            'alert-type' => 'danger'
+        );
+
+        return redirect()->route('product_service_category.view')->with($notification);
     }
 
     /**
@@ -79,8 +84,8 @@ class ProductCategoryController extends Controller
         $category->delete();
 
         $notification = array(
-            'message' => 'Category Deleted Successfully',
-            'alert-type' => 'danger'
+            'message' => 'Category Deleted!!!',
+            'alert-type' => 'warning'
         );
 
         return redirect()->route('product_service_category.view')->with($notification);

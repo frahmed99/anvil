@@ -76,7 +76,7 @@
                                 <div class="row mb-4">
                                     <div class="col-md-10 col-xl-6">
                                         <div class="push">
-                                            <img class="img-avatar" id= "showImage"
+                                            <img class="img-avatar" id="showImage"
                                                 src="{{ !empty(Auth::user()->profile_photo_path)? url('media/upload/user_images/' . Auth::user()->profile_photo_path): url('media/upload/default_user.jpg') }}"
                                                 alt="">
                                         </div>
@@ -104,7 +104,8 @@
                     </h3>
                 </div>
                 <div class="block-content">
-                    <form action="be_pages_generic_profile.edit.html" method="POST" onsubmit="return false;">
+                    <form action="{{ route('password.update') }}" method="POST">
+                        @csrf
                         <div class="row items-push">
                             <div class="col-lg-3">
                                 <p class="text-muted">
@@ -113,21 +114,29 @@
                             </div>
                             <div class="col-lg-7 offset-lg-1">
                                 <div class="mb-4">
-                                    <label class="form-label" for="profile-settings-password">Current Password</label>
-                                    <input type="password" class="form-control form-control-lg"
-                                        id="profile-settings-password" name="profile-settings-password">
+                                    <label class="form-label" for="current_password">Current Password</label>
+                                    <input type="password" class="form-control form-control-lg" id="current_password"
+                                        name="current_password">
+                                    @error('current_password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="profile-settings-password-new">New Password</label>
-                                    <input type="password" class="form-control form-control-lg"
-                                        id="profile-settings-password-new" name="profile-settings-password-new">
+                                    <label class="form-label" for="password">New Password</label>
+                                    <input type="password" class="form-control form-control-lg" id="password"
+                                        name="password">
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="profile-settings-password-new-confirm">Confirm New
+                                    <label class="form-label" for="password_confirmation">Confirm New
                                         Password</label>
-                                    <input type="password" class="form-control form-control-lg"
-                                        id="profile-settings-password-new-confirm"
-                                        name="profile-settings-password-new-confirm">
+                                    <input type="password" class="form-control form-control-lg" id="password_confirmation"
+                                        name="password_confirmation">
+                                    @error('password_confirmation')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
                                     <button type="submit" class="btn btn-alt-primary">Update</button>

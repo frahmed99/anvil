@@ -68,6 +68,10 @@ class TaxesController extends Controller
     public function update(Request $data)
     {
 
+        $data->validate([
+            'edit_tax_name' => 'required|string|max:255',
+            'edit_tax_rate' => 'required|numeric|between:0,100',
+        ]);
         $id = $data->input('id');
         $tax_name = $data->input('edit_tax_name');
         $tax_type = $data->input('edit_tax_rate');
@@ -79,7 +83,7 @@ class TaxesController extends Controller
             ]
         );
         $notification = array(
-            'message' => 'Tax Inserted Successfully',
+            'message' => 'Tax Added Successfully',
             'alert-type' => 'success'
         );
         return redirect()->route('tax.view')->with($notification);

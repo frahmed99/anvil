@@ -63,7 +63,7 @@ Route::prefix('staff/profile')->group(function(){
     Route::get('/view', [ProfilesController::class, 'index'])->name('profile.view');
     Route::get('/edit', [ProfilesController::class, 'ProfileEdit'])->name('profile.edit');
     Route::post('/store', [ProfilesController::class, 'ProfileStore'])->name('profile.store');
-
+    Route::get('/password/update', [ProfilesController::class, 'PasswordUpdate'])->name('password.update');
 });
 
 Route::prefix('setting/companysettings')->group(function(){

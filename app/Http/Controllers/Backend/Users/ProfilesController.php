@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Backend\Users;
 
 use App\Http\Controllers\Controller;
-use App\Models\Profile;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+
+use function PHPUnit\Framework\returnSelf;
+
 
 
 class ProfilesController extends Controller
@@ -55,5 +57,23 @@ class ProfilesController extends Controller
         );
 
         return redirect()->route('profile.view')->with($notification);
+    }
+
+    public function PasswordUpdate(request $request){
+        $validatedData = $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $hashPassword = Auth::user()->password;
+        if (Hash::check($request->current_password, $hashedPassword)) {
+            $user = User::find(Auth::id());
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+            return redirect()->route('login');
+        } else {
+            return redirect()->back();
+        }
     }
 }

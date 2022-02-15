@@ -19,8 +19,33 @@
     <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
-    <script src="{{ asset('js/custom/taxes_validation.min.js')}}"></script>
-
+    <script>
+        $(function() {
+            $("#tax-validation").validate({
+                rules: {
+                    edit_tax_name: {
+                        required: true,
+                    },
+                    edit_tax_rate: {
+                        required: true,
+                        number: true,
+                        min: 0,
+                        max: 100,
+                    },
+                },
+                messages: {
+                    edit_tax_name: {
+                        required: "Please enter some data",
+                        minlength: "Your data must be at least 8 characters"
+                    },
+                    edit_tax_rate: {
+                        required: "Please enter some data",
+                        minlength: "Your data must be at least 8 characters"
+                    },
+                }
+            });
+        });
+    </script>
 @endsection
 
 @section('admin')
