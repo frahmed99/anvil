@@ -20,29 +20,34 @@
     <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
     <script>
-        $(function() {
-            $("#tax-validation").validate({
-                rules: {
-                    edit_tax_name: {
-                        required: true,
-                    },
-                    edit_tax_rate: {
-                        required: true,
-                        number: true,
-                        min: 0,
-                        max: 100,
-                    },
+        $('body').on('click', '#submitForm', function() {
+            var TaxForm = $("TaxValidation");
+            var formData = TaxForm.serialize();
+            $('#name-error').html("");
+            $('#tax-error').html("");
+
+            $.ajax({
+                url: '/register',
+                type: 'POST',
+                data: formData,
+                success: function(data) {
+                    console.log(data);
+                    if (data.errors) {
+                        if (data.errors.name) {
+                            $('#name-error').html(data.errors.name[0]);
+                        }
+                        if (data.errors.email) {
+                            $('#rate-error').html(data.errors.rate[0]);
+                        }
+                    }
+                    if (data.success) {
+                        $('#success-msg').removeClass('hide');
+                        setInterval(function() {
+                            $('#editTaxModal').modal('hide');
+                            $('#success-msg').addClass('hide');
+                        }, 3000);
+                    }
                 },
-                messages: {
-                    edit_tax_name: {
-                        required: "Please enter some data",
-                        minlength: "Your data must be at least 8 characters"
-                    },
-                    edit_tax_rate: {
-                        required: "Please enter some data",
-                        minlength: "Your data must be at least 8 characters"
-                    },
-                }
             });
         });
     </script>
@@ -86,9 +91,9 @@
                                                 placeholder="Tax Name">
                                         </div>
                                         <span style="color:red">@error('tax_name')
+                                                Codebase.block('open', '#cb-add-tax');
                                                 {{ $message }}
                                             @enderror</span>
-
                                     </div>
                                     <div class="col-md-5">
                                         <div class="input-group">
@@ -164,7 +169,7 @@
                                                         </div>
                                                         <div class="block-content fs-sm">
                                                             <form action="{{ route('tax.update') }}" method="POST"
-                                                                id="tax-validation">
+                                                                id="TaxValidation">
                                                                 @csrf
                                                                 <input type="hidden" name="id" value="{{ $tax->id }}">
                                                                 <div class="mb-4">
@@ -172,6 +177,9 @@
                                                                         <input type="text" class="form-control"
                                                                             id="edit_tax_name" name="edit_tax_name"
                                                                             value="{{ $tax->name }}">
+                                                                        <span class="text-danger">
+                                                                            <strong id="name-error"></strong>
+                                                                        </span>
                                                                         <label class="form-label"
                                                                             for="edit_tax_name">Tax Name</label>
                                                                     </div>
@@ -181,17 +189,21 @@
                                                                         <input type="text" class="form-control"
                                                                             id="edit_tax_rate" name="edit_tax_rate"
                                                                             value="{{ $tax->rate }}">
+                                                                        <span class="text-danger">
+                                                                            <strong id="rate-error"></strong>
+                                                                        </span>
                                                                         <label class="form-label"
                                                                             for="edit_tax_rate">Tax Rate</label>
                                                                     </div>
                                                                 </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-alt-secondary"
+                                                            <button type="button" class="btn btn-danger"
                                                                 data-bs-dismiss="modal">
                                                                 Close
                                                             </button>
-                                                            <input type="submit" class="btn btn-alt-primary" value="Save">
+                                                            <input type="submit" id="submitForm" class="btn btn-success"
+                                                                value="Save">
                                                         </div>
                                                         </form>
                                                     </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend\Accounts\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Models\Taxes;
+use Illuminate\Support\Facades\Validator;
+use Response;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -67,27 +69,35 @@ class TaxesController extends Controller
      */
     public function update(Request $data)
     {
-
-        $data->validate([
-            'edit_tax_name' => 'required|string|max:255',
+        $validator = Validator::make($data->all(), [
+            'edit_tax_name' => 'required|max:255',
             'edit_tax_rate' => 'required|numeric|between:0,100',
         ]);
-        $id = $data->input('id');
-        $tax_name = $data->input('edit_tax_name');
-        $tax_type = $data->input('edit_tax_rate');
-        $fire  = Taxes::where('id', $id)
-        ->update(
-            [
-                'name' => $tax_name,
-                'rate' => $tax_type,
-            ]
-        );
-        $notification = array(
-            'message' => 'Tax Added Successfully',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('tax.view')->with($notification);
+
+        $input = $data->all();
+
+        if ($validator->passes()) {
+
+            $id = $data->input('id');
+            $tax_name = $data->input('edit_tax_name');
+            $tax_type = $data->input('edit_tax_rate');
+            $fire  = Taxes::where('id', $id)
+                ->update(
+                    [
+                        'name' => $tax_name,
+                        'rate' => $tax_type,
+                    ]
+                );
+            $notification = array(
+                'message' => 'Tax Added Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('tax.view')->with($notification);
+        }
+
+        return Response::json(['errors' => $validator->errors()]);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -108,3 +118,4 @@ class TaxesController extends Controller
         return redirect()->route('tax.view')->with($notification);
     }
 }
+
