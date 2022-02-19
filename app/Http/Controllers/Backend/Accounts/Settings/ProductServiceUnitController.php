@@ -35,7 +35,7 @@ class ProductServiceUnitController extends Controller
             'message' => 'Category Inserted Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('product_service_unit.view')->with($notification);
+        return redirect()->route('backend.accounts.settings.product_service_unit.view_unit')->with($notification);
     }
 
     /**
@@ -88,5 +88,5 @@ class ProductServiceUnitController extends Controller
             'alert-type' => 'danger'
         );
 
-        return redirect()->route('product_service_unit.view')->with($notification);    }
+        return redirect()->route('backend.accounts.settings.product_service_unit.view_unit')->with($notification);    }
 }

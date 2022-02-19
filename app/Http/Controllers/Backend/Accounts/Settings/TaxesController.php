@@ -76,8 +76,9 @@ class TaxesController extends Controller
 
         $input = $data->all();
 
-        if ($validator->passes()) {
-
+        if ($validator->fails()) {
+            return response::json(['errors' => $validator->errors()->all()]);
+        } else {
             $id = $data->input('id');
             $tax_name = $data->input('edit_tax_name');
             $tax_type = $data->input('edit_tax_rate');
@@ -89,13 +90,11 @@ class TaxesController extends Controller
                     ]
                 );
             $notification = array(
-                'message' => 'Tax Added Successfully',
+                'message' => 'Tax Updated Successfully',
                 'alert-type' => 'success'
             );
             return redirect()->route('tax.view')->with($notification);
         }
-
-        return Response::json(['errors' => $validator->errors()]);
     }
 
 

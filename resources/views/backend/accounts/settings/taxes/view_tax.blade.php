@@ -19,38 +19,57 @@
     <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+@if($errors->has('edit_tax_rate') || $errors->has('edit_tax_name'))
     <script>
-        $('body').on('click', '#submitForm', function() {
-            var TaxForm = $("TaxValidation");
-            var formData = TaxForm.serialize();
-            $('#name-error').html("");
-            $('#tax-error').html("");
-
-            $.ajax({
-                url: '/register',
-                type: 'POST',
-                data: formData,
-                success: function(data) {
-                    console.log(data);
-                    if (data.errors) {
-                        if (data.errors.name) {
-                            $('#name-error').html(data.errors.name[0]);
-                        }
-                        if (data.errors.email) {
-                            $('#rate-error').html(data.errors.rate[0]);
-                        }
-                    }
-                    if (data.success) {
-                        $('#success-msg').removeClass('hide');
-                        setInterval(function() {
-                            $('#editTaxModal').modal('hide');
-                            $('#success-msg').addClass('hide');
-                        }, 3000);
-                    }
-                },
-            });
+    $(function() {
+        $('#editTaxModal{{ $tax->id }}').modal({
+            show: true
         });
+    });
     </script>
+@endif
+
+    {{-- <script type="text/javascript">
+        $(document).ready(function() {
+            $('body').on('click', '#submitForm', function(e) {
+                e.preventDefault();
+                var _token = $("input[name='_token']").val();
+                var edit_tax_name = $('#edit_tax_name').val();
+                var edit_tax_rate = $('#edit_tax_rate').val();
+                $.ajax({
+                    type: 'POST',
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    url: '{{ route('tax.update') }}',
+                    dataType: 'json',
+                    data: {
+                        _token: _token,
+                        edit_tax_name: edit_tax_name,
+                        edit_tax_rate: edit_tax_rate,
+                    },
+                    success: function(data) {
+                        if ($.isEmptyObject(data.error)) {
+                            alert(data.success);
+                            $('#edit_tax_name').val('');
+                            $('#edit_tax_rate').val('');
+                        } else {
+                            printErrorMsg(data.error)
+                        }
+                        table.draw();
+                    }
+                });
+            });
+
+            function printErrorMsg(msg) {
+                $('.error-msg').find('ul').html('');
+                $('.error-msg').css('display', 'block');
+                $.each(msg, function(key, value) {
+                    $(".error-msg").find("ul").append('<li>' + value + '</li>');
+                });
+            }
+        });
+    </script> --}}
 @endsection
 
 @section('admin')
@@ -91,7 +110,6 @@
                                                 placeholder="Tax Name">
                                         </div>
                                         <span style="color:red">@error('tax_name')
-                                                Codebase.block('open', '#cb-add-tax');
                                                 {{ $message }}
                                             @enderror</span>
                                     </div>
@@ -154,7 +172,8 @@
                                             </td>
                                         </tr>
                                         <div class="modal" id="editTaxModal{{ $tax->id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="modal-normal" aria-hidden="true">
+                                            role="dialog" aria-labelledby="editTaxModal{{ $tax->id }}"
+                                            aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="block block-rounded shadow-none mb-0">
@@ -168,30 +187,37 @@
                                                             </div>
                                                         </div>
                                                         <div class="block-content fs-sm">
+                                                            <div class="alert alert-danger error-msg" style="display:none">
+                                                                <ul></ul>
+                                                            </div>
                                                             <form action="{{ route('tax.update') }}" method="POST"
-                                                                id="TaxValidation">
+                                                                id="TaxEdit">
                                                                 @csrf
                                                                 <input type="hidden" name="id" value="{{ $tax->id }}">
                                                                 <div class="mb-4">
                                                                     <div class="form-floating">
-                                                                        <input type="text" class="form-control"
+                                                                        <input type="text" class="form-control @error('edit_tax_name') is-invalid @enderror"
                                                                             id="edit_tax_name" name="edit_tax_name"
                                                                             value="{{ $tax->name }}">
-                                                                        <span class="text-danger">
-                                                                            <strong id="name-error"></strong>
-                                                                        </span>
+                                                                        @error('edit_tax_name')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                         <label class="form-label"
                                                                             for="edit_tax_name">Tax Name</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-4">
                                                                     <div class="form-floating">
-                                                                        <input type="text" class="form-control"
+                                                                        <input type="text" class="form-control @error('edit_tax_rate') is-invalid @enderror""
                                                                             id="edit_tax_rate" name="edit_tax_rate"
                                                                             value="{{ $tax->rate }}">
-                                                                        <span class="text-danger">
-                                                                            <strong id="rate-error"></strong>
-                                                                        </span>
+                                                                        @error('edit_tax_rate')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                         <label class="form-label"
                                                                             for="edit_tax_rate">Tax Rate</label>
                                                                     </div>
