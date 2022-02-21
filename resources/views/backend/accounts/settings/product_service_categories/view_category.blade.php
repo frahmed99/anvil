@@ -6,39 +6,6 @@
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
-
-@endsection
-
-@section('js_after')
-    <!-- jQuery (required for DataTables plugin) -->
-    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-
-    <!-- Page JS Plugins -->
-    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
-
-    <script>
-        $(function() {
-            var n = 0;
-            $('#addColorPicker')
-                .colorpicker();
-        });
-        $(function() {
-            var n = 0;
-            $('#editColorPicker')
-                .colorpicker();
-        });
-    </script>
 @endsection
 
 @section('admin')
@@ -75,15 +42,17 @@
                                 <div class="row g-sm items-push">
                                     <div class="col-md-4">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="category_name"
-                                                name="category_name" value="{{ old('category_name') }}"
-                                                placeholder="Category Name">
+                                            <input type="text"
+                                                class="form-control @error('category_name') is-invalid @enderror"
+                                                id="category_name" name="category_name" placeholder="Category Name">
                                         </div>
+                                        <span style="color:red">@error('category_name')
+                                                {{ $message }}
+                                            @enderror</span>
                                     </div>
                                     <div class="col-md-4">
-                                        <select class="form-select" id="category_select" name="category_select"
-                                            value="{{ old('category_select') }}">
-                                            <option selected="">Category Type</option>
+                                        <select class="form-select @error('category_select') is-invalid @enderror"
+                                            id="category_select" name="category_select" placeholder="Category Type">
                                             <option value="Product">Product</option>
                                             <option value="Services">Services</option>
                                             <option value="Income">Income</option>
@@ -91,9 +60,10 @@
                                         </select>
                                     </div>
                                     <div class="col-md-2">
-                                        <div id="addColorPicker" class="input-group">
-                                            <input type="text" class="form-control input-lg" value="#902100"
-                                                id="category_color" name="category_color"
+                                        <div id="addColorPicker" class="input-group ">
+                                            <input type="text"
+                                                class="form-control input-lg @error('category_color') is-invalid @enderror"
+                                                value="#902100" id="category_color" name="category_color"
                                                 value="{{ old('category_color') }}">
                                             <span class="input-group-append">
                                                 <span class="input-group-text colorpicker-input-addon"><i></i></span>
@@ -137,14 +107,16 @@
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <!-- /Edit Category Button-->
-                                                    <a type="button" class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled edit"
-                                                        href="#editCategoryModal{{ $category->id }}" data-bs-placement="bottom"
-                                                        data-bs-toggle="modal"><i class="fa fa-fw fa-edit"></i></a>
+                                                    <a type="button"
+                                                        class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled edit"
+                                                        href="#editCategoryModal{{ $category->id }}"
+                                                        data-bs-placement="bottom" data-bs-toggle="modal"><i
+                                                            class="fa fa-fw fa-edit"></i></a>
                                                     <!-- /Delete Category Button -->
                                                     <a type="button"
                                                         class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled"
-                                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="" id="delete"
-                                                        data-bs-original-title="Delete Category"
+                                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                                                        id="delete" data-bs-original-title="Delete Category"
                                                         href="{{ route('product_service_category.destroy', $category->id) }}">
                                                         <i class="fa fa-fw fa-times"></i>
                                                     </a>
@@ -173,27 +145,45 @@
                                                                     value="{{ $category->id }}">
                                                                 <div class="mb-4">
                                                                     <div class="form-floating">
-                                                                        <input type="text" class="form-control"
+                                                                        <input type="text" class="form-control @error('edit_category_name') is-invalid @enderror"
                                                                             id="edit_category_name"
                                                                             name="edit_category_name"
                                                                             value="{{ $category->name }}">
+                                                                        @error('edit_category_name')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                         <label class="form-label"
                                                                             for="edit_category_name">Category Name</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-4">
                                                                     <div class="form-floating">
-                                                                        <select class="form-select"
+                                                                        <select class="form-select @error('edit_category_select') is-invalid @enderror"
                                                                             id="edit_category_select"
                                                                             name="edit_category_select" required>
-                                                                            <option @if (old('edit_category_select', $category->type) == 'Product') selected @endif>Product
+                                                                            <option
+                                                                                @if (old('edit_category_select', $category->type) == 'Product') selected @endif>
+                                                                                Product
                                                                             </option>
-                                                                            <option @if (old('edit_category_select', $category->type) == 'Services') selected @endif>Services
+                                                                            <option
+                                                                                @if (old('edit_category_select', $category->type) == 'Services') selected @endif>
+                                                                                Services
                                                                             </option>
-                                                                            <option @if (old('edit_category_select', $category->type) == 'Income') selected @endif>Income</option>
-                                                                            <option @if (old('edit_category_select', $category->type) == 'Expense') selected @endif>Expense
+                                                                            <option
+                                                                                @if (old('edit_category_select', $category->type) == 'Income') selected @endif>
+                                                                                Income</option>
+                                                                            <option
+                                                                                @if (old('edit_category_select', $category->type) == 'Expense') selected @endif>
+                                                                                Expense
                                                                             </option>
                                                                         </select>
+                                                                        @error('edit_category_select')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                         <label class="form-label"
                                                                             for="edit_category_select">Category Type</label>
                                                                     </div>
@@ -201,7 +191,7 @@
                                                                 <div class="mb-4">
                                                                     <div class="form-floating">
                                                                         <div class="input-group" id="editColorPicker">
-                                                                            <input type="text" class="form-control input-lg"
+                                                                            <input type="text" class="form-control input-lg @error('edit_category_color') is-invalid @enderror"
                                                                                 value="{{ $category->color }}"
                                                                                 id="edit_category_color"
                                                                                 name="edit_category_color" required>
@@ -209,6 +199,11 @@
                                                                                 <span
                                                                                     class="input-group-text colorpicker-input-addon"><i></i></span>
                                                                             </span>
+                                                                            @error('edit_category_color')
+                                                                                <span class="invalid-feedback" role="alert">
+                                                                                    <strong>{{ $message }}</strong>
+                                                                                </span>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -237,4 +232,42 @@
         </div>
     </main>
     <!-- END Main Container -->
+@endsection
+@section('js_after')
+    <!-- jQuery (required for DataTables plugin) -->
+    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+
+    <script>
+        $(function() {
+            var n = 0;
+            $('#addColorPicker')
+                .colorpicker();
+        });
+        $(function() {
+            var n = 0;
+            $('#editColorPicker')
+                .colorpicker();
+        });
+    </script>
+    @if (count($errors) > 0)
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#editCategoryModal{{ $category->id }}').modal('show');
+            });
+        </script>
+    @endif
 @endsection

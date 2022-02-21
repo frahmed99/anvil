@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Accounts\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductServiceCategory;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductCategoryController extends Controller
@@ -28,14 +29,20 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request-> validate([
+            'category_name' => 'required|string|max:255|unique:product_service_categories,name',
+            'category_select' => 'required',
+            'category_color'=> 'required',
+        ]);
+
         $data = new ProductServiceCategory();
         $data->name = $request->category_name;
         $data->type = $request->category_select;
         $data->color = $request->category_color;
         $data->save();
         $notification = array(
-            'message' => 'Tax Deleted Successfully',
-            'alert-type' => 'danger'
+            'message' => 'Tax Added Successfully',
+            'alert-type' => 'success'
         );
 
         return redirect()->route('product_service_category.view')->with($notification);
@@ -51,8 +58,23 @@ class ProductCategoryController extends Controller
 
     public function update(Request $data)
     {
+        $this->validate($data, [
+            'edit_category_name' => 'required|max:255',
+            'edit_category_select' => 'required',
+            'edit_category_color' => 'required'
+        ]);
 
-        $id = $data->input('id');
+        $arr["name"] = $data->edit_category_name;
+        $arr["type"] = $data->edit_category_select;
+        $arr["color"] = $data->edit_category_color;
+        $fire = DB::table("product_service_categories")->where("id", $data->id)->update($arr);
+        $notification = array(
+            'message' => 'Category Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('product_service_category.view')->with($notification);
+
+        /* $id = $data->input('id');
         $category_name = $data->input('edit_category_name');
         $category_type = $data->input('edit_category_select');
         $category_color = $data->input('edit_category_color');
@@ -68,7 +90,7 @@ class ProductCategoryController extends Controller
                 'message' => 'Category Inserted Successfully',
                 'alert-type' => 'success'
             );
-            return redirect()->route('product_service_category.view')->with($notification);
+            return redirect()->route('product_service_category.view')->with($notification); */
 
     }
 

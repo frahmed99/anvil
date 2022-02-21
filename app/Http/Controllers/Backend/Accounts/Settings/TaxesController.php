@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Backend\Accounts\Settings;
 
-use App\Http\Controllers\Controller;
 use App\Models\Taxes;
-use Illuminate\Support\Facades\Validator;
-use Response;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class TaxesController extends Controller
 {
@@ -31,7 +29,7 @@ class TaxesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tax_name' => 'required|string|max:255|unique:taxes,name',
+            'category_name' => 'required|string|max:255|unique:taxes,name',
             'tax_rate' => 'required|numeric|between:0,100',
         ]);
 
@@ -49,18 +47,6 @@ class TaxesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Taxes  $taxes
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $editData = Taxes::find($id);
-        return view('backend.accounts.settings.taxes.edit_tax', compact('editData'));
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -69,32 +55,19 @@ class TaxesController extends Controller
      */
     public function update(Request $data)
     {
-        $validator = Validator::make($data->all(), [
+       $this->validate($data, [
             'edit_tax_name' => 'required|max:255',
-            'edit_tax_rate' => 'required|numeric|between:0,100',
+            'edit_tax_rate' => 'required|numeric|between:0,100'
         ]);
 
-        $input = $data->all();
-
-        if ($validator->fails()) {
-            return response::json(['errors' => $validator->errors()->all()]);
-        } else {
-            $id = $data->input('id');
-            $tax_name = $data->input('edit_tax_name');
-            $tax_type = $data->input('edit_tax_rate');
-            $fire  = Taxes::where('id', $id)
-                ->update(
-                    [
-                        'name' => $tax_name,
-                        'rate' => $tax_type,
-                    ]
-                );
-            $notification = array(
-                'message' => 'Tax Updated Successfully',
-                'alert-type' => 'success'
-            );
-            return redirect()->route('tax.view')->with($notification);
-        }
+        $arr["name"] = $data->edit_tax_name;
+        $arr["rate"] = $data->edit_tax_rate;
+        $fire = DB::table("taxes")->where("id", $data->id)->update($arr);
+        $notification = array(
+            'message' => 'Tax Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('tax.view')->with($notification);
     }
 
 
@@ -117,4 +90,3 @@ class TaxesController extends Controller
         return redirect()->route('tax.view')->with($notification);
     }
 }
-

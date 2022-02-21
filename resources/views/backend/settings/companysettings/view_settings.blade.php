@@ -185,7 +185,7 @@
                                 <h4 class="font-w400">Company Settings</h4>
                                 <div class="block-content">
                                     <form action="be_forms_elements_material.html" method="post" onsubmit="return false;">
-                                        <div class="block-header bg-gd-aqua">
+                                        <div class="block-header bg-gd-aqua mb-2">
                                             <h3 class="block-title">Company Address</h3>
                                         </div>
                                         <div class="form-group row">
@@ -235,7 +235,7 @@
                                                     placeholder="ZMK">
                                             </div>
                                         </div>
-                                        <div class="block-header bg-gd-aqua">
+                                        <div class="block-header bg-gd-aqua mb-2">
                                             <h3 class="block-title">Contact Information</h3>
                                         </div>
                                         <div class="form-group row">
@@ -261,12 +261,12 @@
                                                     placeholder="ZMK">
                                             </div>
                                         </div>
-                                        <div class="block-header bg-gd-aqua">
+                                        <div class="block-header bg-gd-aqua  mb-2">
                                             <h3 class="block-title">Company Information</h3>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-6 mb-4">
-                                                <label class="form-label" for="example-text-input-valid">Comapny
+                                                <label class="form-label" for="example-text-input-valid">Company
                                                     Registration Number</label>
                                                 <input type="text" class="form-control is-valid"
                                                     id="example-text-input-valid" name="example-text-input-valid"

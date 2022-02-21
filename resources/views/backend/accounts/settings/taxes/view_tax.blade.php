@@ -7,70 +7,7 @@
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
 @endsection
 
-@section('js_after')
-    <!-- Page JS Plugins -->
-    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
-@if($errors->has('edit_tax_rate') || $errors->has('edit_tax_name'))
-    <script>
-    $(function() {
-        $('#editTaxModal{{ $tax->id }}').modal({
-            show: true
-        });
-    });
-    </script>
-@endif
 
-    {{-- <script type="text/javascript">
-        $(document).ready(function() {
-            $('body').on('click', '#submitForm', function(e) {
-                e.preventDefault();
-                var _token = $("input[name='_token']").val();
-                var edit_tax_name = $('#edit_tax_name').val();
-                var edit_tax_rate = $('#edit_tax_rate').val();
-                $.ajax({
-                    type: 'POST',
-                    headers: {
-                        Accept: "application/json"
-                    },
-                    url: '{{ route('tax.update') }}',
-                    dataType: 'json',
-                    data: {
-                        _token: _token,
-                        edit_tax_name: edit_tax_name,
-                        edit_tax_rate: edit_tax_rate,
-                    },
-                    success: function(data) {
-                        if ($.isEmptyObject(data.error)) {
-                            alert(data.success);
-                            $('#edit_tax_name').val('');
-                            $('#edit_tax_rate').val('');
-                        } else {
-                            printErrorMsg(data.error)
-                        }
-                        table.draw();
-                    }
-                });
-            });
-
-            function printErrorMsg(msg) {
-                $('.error-msg').find('ul').html('');
-                $('.error-msg').css('display', 'block');
-                $.each(msg, function(key, value) {
-                    $(".error-msg").find("ul").append('<li>' + value + '</li>');
-                });
-            }
-        });
-    </script> --}}
-@endsection
 
 @section('admin')
     <!-- Main Container -->
@@ -106,7 +43,7 @@
                                 <div class="row g-sm items-push">
                                     <div class="col-md-5">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="tax_name" name="tax_name"
+                                            <input type="text" class="form-control @error('tax_name') is-invalid @enderror" id="tax_name" name="tax_name"
                                                 placeholder="Tax Name">
                                         </div>
                                         <span style="color:red">@error('tax_name')
@@ -115,7 +52,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="tax_rate" name="tax_rate"
+                                            <input type="text" class="form-control @error('tax_rate') is-invalid @enderror" id="tax_rate" name="tax_rate"
                                                 placeholder="Tax Rate %">
                                         </div>
                                         <span style="color:red">@error('tax_rate')
@@ -196,7 +133,8 @@
                                                                 <input type="hidden" name="id" value="{{ $tax->id }}">
                                                                 <div class="mb-4">
                                                                     <div class="form-floating">
-                                                                        <input type="text" class="form-control @error('edit_tax_name') is-invalid @enderror"
+                                                                        <input type="text"
+                                                                            class="form-control @error('edit_tax_name') is-invalid @enderror"
                                                                             id="edit_tax_name" name="edit_tax_name"
                                                                             value="{{ $tax->name }}">
                                                                         @error('edit_tax_name')
@@ -210,8 +148,10 @@
                                                                 </div>
                                                                 <div class="mb-4">
                                                                     <div class="form-floating">
-                                                                        <input type="text" class="form-control @error('edit_tax_rate') is-invalid @enderror""
-                                                                            id="edit_tax_rate" name="edit_tax_rate"
+                                                                        <input type="text"
+                                                                            class="form-control @error('edit_tax_rate') is-invalid @enderror"
+                                                                                        id=" edit_tax_rate"
+                                                                            name="edit_tax_rate"
                                                                             value="{{ $tax->rate }}">
                                                                         @error('edit_tax_rate')
                                                                             <span class="invalid-feedback" role="alert">
@@ -249,4 +189,26 @@
         <!-- END Page Content -->
     </main>
     <!-- END Main Container -->
+@endsection
+
+@section('js_after')
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+
+    @if (count($errors) > 0)
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#editTaxModal{{ $tax->id }}').modal('show');
+            });
+        </script>
+    @endif
 @endsection
