@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
 @endsection
 
-
-
 @section('admin')
     <!-- Main Container -->
     <main id="main-container">

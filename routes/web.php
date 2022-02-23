@@ -45,10 +45,6 @@ Route::group(
             Route::get('/view', [InvoicesController::class, 'index'])->name('invoice.view');
         });
 
-        Route::prefix('sales/customers')->group(function () {
-            Route::get('/view', [CustomersController::class, 'index'])->name('customer.view');
-        });
-
         Route::prefix('purchases/vendors')->group(function () {
             Route::get('/view', [VendorsController::class, 'index'])->name('vendor.view');
         });
@@ -66,7 +62,7 @@ Route::group(
             Route::get('/view', [ProfilesController::class, 'index'])->name('profile.view');
             Route::get('/edit', [ProfilesController::class, 'ProfileEdit'])->name('profile.edit');
             Route::post('/store', [ProfilesController::class, 'ProfileStore'])->name('profile.store');
-            Route::get('/password/update', [ProfilesController::class, 'PasswordUpdate'])->name('password.update');
+            Route::get('/password/update', [ProfilesController::class, 'PasswordUpdate'])->name('update.password');
         });
 
         Route::prefix('setting/companysettings')->group(function () {

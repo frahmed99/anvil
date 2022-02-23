@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend\Users;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Auth;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use function PHPUnit\Framework\returnSelf;
@@ -61,19 +61,28 @@ class ProfilesController extends Controller
 
     public function PasswordUpdate(request $request){
         $validatedData = $request->validate([
-            'current_password' => 'required',
-            'password' => 'required|confirmed',
+            'oldpassword' => 'required',
+            'newpassword' => 'required|confirmed',
         ]);
 
         $hashPassword = Auth::user()->password;
-        if (Hash::check($request->current_password, $hashedPassword)) {
-            $user = User::find(Auth::id());
-            $user->password = Hash::make($request->password);
-            $user->save();
-            Auth::logout();
-            return redirect()->route('login');
+        if (\Hash::check($request->oldpassword, $hashedPassword)) {
+
+            if (!\Hash::check($request->newpassword, $hashedPassword)) {
+
+                $users = admin::find(Auth::user()->id);
+                $users->password = bcrypt($request->newpassword);
+                admin::where('id', Auth::user()->id)->update(array('password' => $users->password));
+
+                session()->flash('message', 'password updated successfully');
+                return redirect()->back();
+            } else {
+                session()->flash('message', 'new password can not be the old password!');
+                return redirect()->back();
+            }
         } else {
+            session()->flash('message', 'old password doesnt matched ');
             return redirect()->back();
         }
-    }
 }
+

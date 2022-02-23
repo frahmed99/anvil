@@ -17,7 +17,7 @@ class VendorsController extends Controller
     public function index()
     {
         $data['allData'] = Vendor::all();
-        return view('Backend.Vendors.view_vendor', $data);
+        return view('Backend.Vendors.index', $data);
     }
 
     /**
@@ -27,7 +27,7 @@ class VendorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.Vendors.add');
     }
 
     /**
@@ -49,7 +49,7 @@ class VendorsController extends Controller
      */
     public function show(Vendor $vendor)
     {
-        //
+        return view('Backend.Vendors.show', $vendor);
     }
 
     /**

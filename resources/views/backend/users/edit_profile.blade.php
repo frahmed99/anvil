@@ -104,8 +104,9 @@
                     </h3>
                 </div>
                 <div class="block-content">
-                    <form action="{{ route('password.update') }}" method="POST">
+                    <form action="{{ route('update.password') }}" method="POST">
                         @csrf
+                        @method('PATCH')
                         <div class="row items-push">
                             <div class="col-lg-3">
                                 <p class="text-muted">
@@ -114,18 +115,18 @@
                             </div>
                             <div class="col-lg-7 offset-lg-1">
                                 <div class="mb-4">
-                                    <label class="form-label" for="current_password">Current Password</label>
-                                    <input type="password" class="form-control form-control-lg" id="current_password"
-                                        name="current_password">
-                                    @error('current_password')
+                                    <label class="form-label" for="oldpassword">Current Password</label>
+                                    <input type="password" class="form-control form-control-lg" id="oldpassword"
+                                        name="oldpassword">
+                                    @error('oldpassword')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="password">New Password</label>
-                                    <input type="password" class="form-control form-control-lg" id="password"
-                                        name="password">
-                                    @error('password')
+                                    <label class="form-label" for="newpassword">New Password</label>
+                                    <input type="password" class="form-control form-control-lg" id="newpassword"
+                                        name="newpassword">
+                                    @error('newpassword')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -131,8 +131,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('accounts/vendors') ? ' active' : '' }}"
-                                            href="#">
+                                        <a class="nav-main-link{{ request()->is('accounts/vendor') ? ' active' : '' }}"
+                                            href="{{ route('vendor.view') }}">
                                             <span class="nav-main-link-name">Vendors</span>
                                         </a>
                                     </li>

@@ -58,10 +58,11 @@
         <!-- Main Container -->
         <main id="main-container">
             @yield('admin')
+            @include('admin.body.footer')
         </main>
         <!-- END Main Container -->
 
-        @include('admin.body.footer')
+
     </div>
     <!-- END Page Container -->
     <!-- Codebase Core JS -->

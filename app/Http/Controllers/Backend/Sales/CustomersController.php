@@ -17,7 +17,7 @@ class CustomersController extends Controller
     public function index()
     {
         $data['allData'] = Customer::all();
-        return view('Backend.Customers.view_customer', $data);
+        return view('Backend.Customers.index', $data);
     }
 
     /**
@@ -27,7 +27,7 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.Customers.add');
     }
 
     /**
@@ -49,7 +49,7 @@ class CustomersController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('Backend.Customers.show', $customer);
     }
 
     /**

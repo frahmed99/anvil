@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-<title>Anvil &amp; ERP</title>
+<title>Anvil Accounting</title>
 
 <meta name="description"
     content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
@@ -107,7 +107,7 @@
                             <div class="px-4 py-2 mb-4">
                                 <a class="link-fx fw-bold" href="index.html">
                                     <i class="fa fa-fire"></i>
-                                    <span class="fs-4 text-body-color">code</span><span
+                                    <span class="fs-4 text-body-color">anvil</span><span
                                         class="fs-4">ERP</span>
                                 </a>
                                 <h1 class="h3 fw-bold mt-4 mb-2">Create New Account</h1>
@@ -121,35 +121,36 @@
                             <form class="js-validation-signup px-4" action="{{ route('register') }}" method="POST">
                                 @csrf
                                 <div class="form-floating mb-4">
-                                    <input type="email" class="form-control" id="signup-email" name="signup-email"
+                                    <input type="email" class="form-control" id="email" name="email"
                                         placeholder="Enter your email">
                                     <label class="form-label" for="{{ __('Email') }}">Email</label>
                                 </div>
                                 <div class="form-floating mb-4">
-                                    <input type="password" class="form-control" id="signup-password"
-                                        name="signup-password" placeholder="Enter your password">
+                                    <input type="password" class="form-control" id="password"
+                                        name="password" placeholder="Enter your password">
                                     <label class="form-label" for="{{ __('Password') }}">Password</label>
                                 </div>
                                 <div class="form-floating mb-4">
-                                    <input type="password" class="form-control" id="signup-password-confirm"
-                                        name="signup-password-confirm" placeholder="Confirm Password">
-                                    <label class="form-label" for="signup-password-confirm" value="{{ __('Confirm Password') }}">Confirm Password</label>
+                                    <input type="password" class="form-control" id="password_confirmation"
+                                        name="password_confirmation" placeholder="Confirm Password">
+                                    <label class="form-label" for="signup-password-confirm"
+                                        value="{{ __('Confirm Password') }}">Confirm Password</label>
                                 </div>
                                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                                <div class="mt-4">
-                                    <x-jet-label for="terms">
-                                        <div class="flex items-center">
-                                            <x-jet-checkbox name="terms" id="terms" />
+                                    <div class="mt-4">
+                                        <x-jet-label for="terms">
+                                            <div class="flex items-center">
+                                                <x-jet-checkbox name="terms" id="terms" />
 
-                                            <div class="ml-2">
-                                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Terms of Service') . '</a>',
-                                                'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Privacy Policy') . '</a>',
-                                                ]) !!}
+                                                <div class="ml-2">
+                                                    {!! __('I agree to the :terms_of_service and :privacy_policy', [
+    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Terms of Service') . '</a>',
+    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Privacy Policy') . '</a>',
+]) !!}
+                                                </div>
                                             </div>
-                                        </div>
-                                    </x-jet-label>
-                                </div>
+                                        </x-jet-label>
+                                    </div>
                                 @endif
                                 <div class="mb-4">
                                     <div class="form-check">
@@ -159,7 +160,8 @@
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold" href="{{ route('register') }}">
+                                    <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold"
+                                        href="{{ route('register') }}">
                                         Create Account
                                     </button>
                                     <div class="mt-4">
@@ -322,7 +324,6 @@
         Custom functionality including Blocks/Layout API as well as other vital and optional helpers
         webpack is putting everything together at assets/_js/main/app.js
     -->
-    <script src="{{ mix('js/codebase.app.js') }}"></script>
 </body>
 
 </html>
