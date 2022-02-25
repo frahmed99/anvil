@@ -15,8 +15,8 @@
                         <span>Add Vendor</span>
                     </h2>
                     <form action="be_forms_elements_material.html" method="post">
-                        <div class="block-header bg-gd-aqua mb-2">
-                            <h3 class="block-title">Basic Information</h3>
+                        <div class="block-header bg-gd-primary mb-2">
+                            <h3 class="block-title" style="color:white">Basic Information</h3>
                         </div>
                         <div class="form-group row">
                             <div class="col-6 mb-4">
@@ -43,8 +43,8 @@
                                     name="example-text-input-valid" placeholder="Enter Vendor Tax Number">
                             </div>
                         </div>
-                        <div class="block-header bg-gd-aqua mb-2">
-                            <h3 class="block-title">Billing Address</h3>
+                        <div class="block-header bg-gd-primary mb-2">
+                            <h3 class="block-title" style="color:white">Billing Address</h3>
                         </div>
                         <div class="form-group row">
                             <div class="col-4 mb-4">
@@ -97,8 +97,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="block-header bg-gd-aqua mb-2">
-                            <h3 class="block-title">Shipping Address</h3>
+                        <div class="block-header bg-gd-primary mb-2">
+                            <h3 class="block-title" style="color:white">Shipping Address</h3>
                         </div>
                         <div class="form-group row">
                             <div class="col-4 mb-4">

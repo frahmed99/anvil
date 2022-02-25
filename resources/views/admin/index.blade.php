@@ -12,7 +12,7 @@
                         </div>
                         <div>
                             <div class="fs-3 fw-semibold text-primary-light">18,490</div>
-                            <div class="fs-sm fw-semibold text-uppercase text-muted">Likes</div>
+                            <div class="fs-sm fw-semibold text-uppercase text-muted">Customers</div>
                         </div>
                     </div>
                 </a>
@@ -26,7 +26,7 @@
                         </div>
                         <div>
                             <div class="fs-3 fw-semibold text-primary-light">4,210</div>
-                            <div class="fs-sm fw-semibold text-uppercase text-muted">Followers</div>
+                            <div class="fs-sm fw-semibold text-uppercase text-muted">Vendors</div>
                         </div>
                     </div>
                 </a>
@@ -40,7 +40,7 @@
                         </div>
                         <div>
                             <div class="fs-3 fw-semibold text-primary-light">350</div>
-                            <div class="fs-sm fw-semibold text-uppercase text-muted">Sales</div>
+                            <div class="fs-sm fw-semibold text-uppercase text-muted">Invoices</div>
                         </div>
                     </div>
                 </a>
@@ -54,7 +54,7 @@
                         </div>
                         <div>
                             <div class="fs-3 fw-semibold text-primary-light">$2,970</div>
-                            <div class="fs-sm fw-semibold text-uppercase text-muted">Earnings</div>
+                            <div class="fs-sm fw-semibold text-uppercase text-muted">Bills</div>
                         </div>
                     </div>
                 </a>
@@ -62,48 +62,75 @@
             <!-- END Row #1 -->
         </div>
         <div class="row">
-            <!-- Row #2 -->
-            <div class="col-md-6">
-                <div class="block block-rounded block-fx-shadow">
-                    <div class="block-header block-header-default">
+            <!-- Row #3 -->
+            <div class="col-xl-8 d-flex align-items-stretch">
+                <div class="block block-rounded block-themed block-mode-loading-dark block-transparent bg-image w-100"
+                    style="background-image: url('assets/media/photos/photo34@2x.jpg');">
+                    <div class="block-header bg-black-50">
                         <h3 class="block-title">
-                            Sales <small>This week</small>
+                            Sales <small class="text-white">This week</small>
                         </h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-toggle="block-option"
                                 data-action="state_toggle" data-action-mode="demo">
                                 <i class="si si-refresh"></i>
                             </button>
-                        </div>
-                    </div>
-                    <div class="block-content block-content-full">
-                        <!-- Lines Chart Container functionality is initialized in js/pages/db_pop.min.js which was auto compiled from _js/pages/db_pop.js -->
-                        <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
-                        <canvas id="js-chartjs-pop-lines"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="block block-rounded block-fx-shadow">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">
-                            Earnings <small>This week</small>
-                        </h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-toggle="block-option"
-                                data-action="state_toggle" data-action-mode="demo">
-                                <i class="si si-refresh"></i>
+                            <button type="button" class="btn-block-option">
+                                <i class="si si-wrench"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="block-content block-content-full">
-                        <!-- Lines Chart Container functionality is initialized in js/pages/db_pop.min.js which was auto compiled from _js/pages/db_pop.js -->
+                    <div class="block-content bg-black-50 p-1">
+                        <!-- Lines Chart Container functionality is initialized in js/pages/be_pages_dashboard.min.js which was auto compiled from _js/pages/be_pages_dashboard.js -->
                         <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
-                        <canvas id="js-chartjs-pop-lines2"></canvas>
+                        <canvas id="js-chartjs-dashboard-lines" width="965" height="482"
+                            style="display: block; box-sizing: border-box; height: 482px; width: 965px;"></canvas>
                     </div>
                 </div>
             </div>
-            <!-- END Row #2 -->
+            <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="block block-rounded block-transparent bg-primary-dark d-flex align-items-center w-100">
+                    <div class="block-content block-content-full">
+                        <div class="py-3 px-3 border-black-op-b d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fs-3 fw-semibold text-success">750</div>
+                                <div class="fs-sm fw-semibold text-uppercase text-success-light">Income Today</div>
+                            </div>
+                            <div class="mt-3 d-none d-sm-block">
+                                <i class="si si-book-open fa-2x text-success"></i>
+                            </div>
+                        </div>
+                        <div class="py-3 px-3 border-black-op-b d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fs-3 fw-semibold text-danger">$980</div>
+                                <div class="fs-sm fw-semibold text-uppercase text-danger-light">Income This Month</div>
+                            </div>
+                            <div class="mt-3 d-none d-sm-block">
+                                <i class="si si-wallet fa-2x text-danger"></i>
+                            </div>
+                        </div>
+                        <div class="py-3 px-3 border-black-op-b d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fs-3 fw-semibold text-warning">38</div>
+                                <div class="fs-sm fw-semibold text-uppercase text-warning-light">Expenses</div>
+                            </div>
+                            <div class="mt-3 d-none d-sm-block">
+                                <i class="si si-envelope-open fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="py-3 px-3 border-black-op-b d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fs-3 fw-semibold text-info">260</div>
+                                <div class="fs-sm fw-semibold text-uppercase text-info-light">Expenses This Month</div>
+                            </div>
+                            <div class="mt-3 d-none d-sm-block">
+                                <i class="si si-users fa-2x text-info"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Row #3 -->
         </div>
         <div class="block block-rounded block-fx-shadow">
             <div class="block-content bg-body-light">
@@ -449,4 +476,9 @@
         </div>
     </div>
     <!-- END Page Content -->
+@endsection
+
+
+@section('js_after')
+    <script src="{{ asset('js/plugins/chart.js/chart.min.js') }}"></script>
 @endsection

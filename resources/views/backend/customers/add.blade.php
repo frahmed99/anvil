@@ -13,132 +13,130 @@
                         <span>Add Vendor</span>
                     </h2>
                     <form action="be_forms_elements_material.html" method="post">
-                        <div class="block-header bg-gd-aqua mb-2">
-                            <h3 class="block-title">Basic Information</h3>
+                        <div class="block-header bg-gd-primary mb-2">
+                            <h3 class="block-title" style="color:white">Basic Information</h3>
                         </div>
                         <div class="form-group row">
                             <div class="col-6 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Name</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Vendor Name">
+                                <label class="form-label" for="CustomerName">Name</label>
+                                <input type="text" class="form-control is-valid" id="CustomerName"
+                                    name="CustomerName" placeholder="Enter Customer Name">
                             </div>
                             <div class="col-6 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Phone
+                                <label class="form-label" for="CustomerNumber">Phone
                                     Number</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="09xxxxxxxx">
+                                <input type="text" class="form-control is-valid" id="CustomerNumber"
+                                    name="CustomerNumber" placeholder="+260xxxxxxxxxx">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-6 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Email</label>
-                                <input type="email" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Vendor Email">
+                                <label class="form-label" for="CustomerEmail">Email</label>
+                                <input type="email" class="form-control is-valid" id="CustomerEmail"
+                                    name="CustomerEmail" placeholder="Enter Customer Email">
                             </div>
                             <div class="col-6 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Tax Number</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Vendor Tax Number">
+                                <label class="form-label" for="CustomerTaxNumber">Tax Number</label>
+                                <input type="text" class="form-control is-valid" id="CustomerTaxNumber"
+                                    name="CustomerTaxNumber" placeholder="Enter Customer Tax Number">
                             </div>
                         </div>
-                        <div class="block-header bg-gd-aqua mb-2">
-                            <h3 class="block-title">Billing Address</h3>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Company Name</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company Name">
-                            </div>
-                            <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Country</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company Country">
-                            </div>
-                            <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Province</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company Province">
-                            </div>
+                        <div class="block-header bg-gd-primary mb-2">
+                            <h3 class="block-title" style="color:white">Billing Address</h3>
                         </div>
                         <div class="form-group row">
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">City</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company City">
+                                <label class="form-label" for="BillingCompanyName">Company Name</label>
+                                <input type="text" class="form-control is-valid" id="BillingCompanyName"
+                                    name="BillingCompanyName" placeholder="Enter Company Name">
                             </div>
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Phone Number</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="09xxxxxxxx">
+                                <label class="form-label" for="BillingCompanyCountry">Country</label>
+                                <input type="text" class="form-control is-valid" id="BillingCompanyCountry"
+                                    name="BillingCompanyCountry" placeholder="Enter Company Country">
                             </div>
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Postal Code</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company Zip Code">
+                                <label class="form-label" for="BillingCompanyProvince">Province</label>
+                                <input type="text" class="form-control is-valid" id="BillingCompanyProvince"
+                                    name="BillingCompanyProvince" placeholder="Enter Company Province">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4 mb-4">
+                                <label class="form-label" for="BillingCountryCity">City</label>
+                                <input type="text" class="form-control is-valid" id="BillingCountryCity"
+                                    name="BillingCountryCity" placeholder="Enter Company City">
+                            </div>
+                            <div class="col-4 mb-4">
+                                <label class="form-label" for="BillingCompanyNumber">Phone Number</label>
+                                <input type="text" class="form-control is-valid" id="BillingCompanyNumber"
+                                    name="BillingCompanyNumber" placeholder="09xxxxxxxx">
+                            </div>
+                            <div class="col-4 mb-4">
+                                <label class="form-label" for="BillingCompanyPostCode">Postal Code</label>
+                                <input type="text" class="form-control is-valid" id="BillingCompanyPostCode"
+                                    name="BillingCompanyPostCode" placeholder="Enter Company Zip Code">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="mb-4">
-                                <label class="form-label" for="example-textarea-input">Address</label>
-                                <textarea class="form-control" id="example-textarea-input" name="example-textarea-input"
-                                    rows="4" placeholder="Textarea content.."></textarea>
+                                <label class="form-label" for="BillingCompanyAddress">Address</label>
+                                <textarea class="form-control" id="BillingCompanyAddress" name="BillingCompanyAddress"
+                                    rows="4" placeholder="Billing Address.."></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="mb-4">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" value="" id="example-switch-default1"
-                                        name="example-switch-default1" checked="">
-                                    <label class="form-check-label" for="example-switch-default1">Billing
+                                    <input class="form-check-input" type="checkbox" value="" id="ShippingBillingSwitch"
+                                        name="ShippingBillingSwitch" checked="">
+                                    <label class="form-check-label" for="ShippingBillingSwitch">Billing
                                         Address Same As Shipping Address</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="block-header bg-gd-aqua mb-2">
-                            <h3 class="block-title">Shipping Address</h3>
+                        <div class="block-header bg-gd-primary mb-2">
+                            <h3 class="block-title" style="color:white">Shipping Address</h3>
                         </div>
                         <div class="form-group row">
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Company Name</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company Name">
+                                <label class="form-label" for="ShippingCompanyName">Company Name</label>
+                                <input type="text" class="form-control is-valid" id="ShippingCompanyName"
+                                    name="ShippingCompanyName" placeholder="Enter Company Name">
                             </div>
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Country</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="09xxxxxxxx">
+                                <label class="form-label" for="ShippingCompanyCountry">Country</label>
+                                <input type="text" class="form-control is-valid" id="ShippingCompanyCountry"
+                                    name="ShippingCompanyCountry" placeholder="Enter Company Country">
                             </div>
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Province</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company Province">
+                                <label class="form-label" for="ShippingCompanyProvince">Province</label>
+                                <input type="text" class="form-control is-valid" id="ShippingCompanyProvince"
+                                    name="ShippingCompanyProvince" placeholder="Enter Company Province">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">City</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company City">
+                                <label class="form-label" for="ShippingCountryCity">City</label>
+                                <input type="text" class="form-control is-valid" id="ShippingCountryCity"
+                                    name="ShippingCountryCity" placeholder="Enter Company City">
                             </div>
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Phone
-                                    Number</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="09xxxxxxxx">
+                                <label class="form-label" for="ShippingCompanyNumber">Phone Number</label>
+                                <input type="text" class="form-control is-valid" id="ShippingCompanyNumber"
+                                    name="ShippingCompanyNumber" placeholder="09xxxxxxxx">
                             </div>
                             <div class="col-4 mb-4">
-                                <label class="form-label" for="example-text-input-valid">Postal
-                                    Code</label>
-                                <input type="text" class="form-control is-valid" id="example-text-input-valid"
-                                    name="example-text-input-valid" placeholder="Enter Company Post Code">
+                                <label class="form-label" for="ShippingCompanyPostCode">Postal Code</label>
+                                <input type="text" class="form-control is-valid" id="ShippingCompanyPostCode"
+                                    name="ShippingCompanyPostCode" placeholder="Enter Company Zip Code">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="mb-4">
-                                <label class="form-label" for="example-textarea-input">Address</label>
-                                <textarea class="form-control" id="example-textarea-input" name="example-textarea-input"
-                                    rows="4" placeholder="Textarea content.."></textarea>
+                                <label class="form-label" for="ShippingCompanyAddress">Address</label>
+                                <textarea class="form-control" id="ShippingCompanyAddress" name="ShippingCompanyAddress"
+                                    rows="4" placeholder="Billing Address.."></textarea>
                             </div>
                         </div>
                         <div class="form-group row">

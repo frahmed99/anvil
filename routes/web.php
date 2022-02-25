@@ -35,20 +35,6 @@ Route::group(
 
         Route::get('/admin/logout', [AdminController::class, 'Logout'])->name('admin.logout');
 
-        //Sales Management
-        //Estimate Management
-        Route::prefix('sales/estimates')->group(function () {
-            Route::get('/view', [EstimateController::class, 'index'])->name('estimate.view');
-        });
-
-        Route::prefix('sales/invoices')->group(function () {
-            Route::get('/view', [InvoicesController::class, 'index'])->name('invoice.view');
-        });
-
-        Route::prefix('purchases/vendors')->group(function () {
-            Route::get('/view', [VendorsController::class, 'index'])->name('vendor.view');
-        });
-
         Route::prefix('staff/user')->group(function () {
             Route::get('/view', [UsersController::class, 'index'])->name('user.view');
             Route::get('/create', [UsersController::class, 'create'])->name('user.create');

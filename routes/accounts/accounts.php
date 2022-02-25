@@ -6,8 +6,7 @@ use App\Http\Controllers\backend\Accounts\Settings\ProductCategoryController;
 use App\Http\Controllers\backend\Accounts\Settings\ProductServiceUnitController;
 use App\Http\Controllers\backend\Sales\CustomersController;
 use App\Http\Controllers\backend\Purchases\VendorsController;
-
-
+use App\Http\Controllers\backend\Sales\ProposalController;
 
 Route::prefix('accounts/settings/taxes')->group(function(){
     Route::get('/view', [TaxesController::class, 'index'])->name('tax.view');
@@ -48,3 +47,11 @@ Route::prefix('accounts/vendor')->group(function () {
     Route::post('/update/{id}', [VendorsController::class, 'update'])->name('vendor.update');
 });
 
+Route::prefix('accounts/quotations')->group(function () {
+    Route::get('/view', [ProposalController::class, 'index'])->name('proposal.view');
+    Route::get('/create', [ProposalController::class, 'create'])->name('proposal.create');
+    Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposal.edit');
+    Route::get('/destroy/{id}', [ProposalController::class, 'destroy'])->name('proposal.destroy');
+    Route::post('/store', [ProposalController::class, 'store'])->name('proposal.store');
+    Route::post('/update/{id}', [ProposalController::class, 'update'])->name('proposal.update');
+});

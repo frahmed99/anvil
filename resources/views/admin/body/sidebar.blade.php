@@ -92,7 +92,7 @@
                             <li class="nav-main-item">
                                 <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}"
                                     href="/dashboard">
-                                    <i class="nav-main-link-icon fa fa-house-user"></i>
+                                    <i class="nav-main-link-icon fa fa-dashboard"></i>
                                     <span class="nav-main-link-name">Dashboard</span>
                                 </a>
                             </li>
@@ -120,7 +120,7 @@
                             <li class="nav-main-item{{ request()->is('accounts/*') ? ' open' : '' }}">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
                                     aria-haspopup="true" aria-expanded="true" href="#">
-                                    <i class="nav-main-link-icon fa fa-lightbulb"></i>
+                                    <i class="nav-main-link-icon fas fa-money-bill"></i>
                                     <span class="nav-main-link-name">Accounts</span>
                                 </a>
                                 <ul class="nav-main-submenu">
@@ -137,8 +137,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-main-item">
-                                        <a class="nav-main-link{{ request()->is('accounts/quotation') ? ' active' : '' }}"
-                                            href="#">
+                                        <a class="nav-main-link{{ request()->is('accounts/proposal') ? ' active' : '' }}"
+                                            href="{{ route('proposal.view') }}">
                                             <span class="nav-main-link-name">Quotation</span>
                                         </a>
                                     </li>
