@@ -49,7 +49,7 @@
 </head>
 
 <body>
-    <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-narrow">
+    <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-narrow remember-theme">
         <!-- Side Overlay-->
         @include('admin.body.sidebar')
         <!-- END Side Overlay -->

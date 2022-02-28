@@ -24,7 +24,10 @@ mix
     /* JS */
     .js("resources/js/app.js", "public/js/laravel.app.js")
     .js("resources/js/codebase/app.js", "public/js/codebase.app.js")
-
+    .js(
+        "resources/js/pages/op_auth_signup.js",
+        "public/js/pages/op_auth_signup.min.js"
+    )
     /* DataTable JS */
     .js(
         "resources/js/pages/tables_datatables.js",

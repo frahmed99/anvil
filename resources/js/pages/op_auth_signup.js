@@ -15,45 +15,56 @@ class pageAuthSignUp {
     Codebase.helpers('jq-validation');
 
     // Init Form Validation
-    jQuery('.js-validation-signup').validate({
-      rules: {
-        'signup-username': {
-          required: true,
-          minlength: 3
+    jQuery(".js-validation-signup").validate({
+        rules: {
+            first_name: {
+                required: true,
+                minlength: 3,
+            },
+            last_name: {
+                required: true,
+                minlength: 3,
+            },
+            email: {
+                required: true,
+                unique: true,
+                email: true,
+            },
+            password: {
+                required: true,
+                minlength: 8,
+            },
+            password_confirmation: {
+                required: true,
+                equalTo: "#password",
+            },
+            "signup-terms": {
+                required: true,
+            },
         },
-        'signup-email': {
-          required: true,
-          email: true
+        messages: {
+            first_name: {
+                required: "Please enter a First Name",
+                minlength:
+                    "Your username must consist of at least 3 characters",
+            },
+            last_name: {
+                required: "Please enter a Last Name",
+                minlength:
+                    "Your username must consist of at least 3 characters",
+            },
+            email: "Please enter a valid email address",
+            password: {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 8 characters long",
+            },
+            "password-confirm": {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 8 characters long",
+                equalTo: "Please enter the same password as above",
+            },
+            "signup-terms": "You must agree to the service terms!",
         },
-        'signup-password': {
-          required: true,
-          minlength: 5
-        },
-        'signup-password-confirm': {
-          required: true,
-          equalTo: '#signup-password'
-        },
-        'signup-terms': {
-          required: true
-        }
-      },
-      messages: {
-        'signup-username': {
-          required: 'Please enter a username',
-          minlength: 'Your username must consist of at least 3 characters'
-        },
-        'signup-email': 'Please enter a valid email address',
-        'signup-password': {
-          required: 'Please provide a password',
-          minlength: 'Your password must be at least 5 characters long'
-        },
-        'signup-password-confirm': {
-          required: 'Please provide a password',
-          minlength: 'Your password must be at least 5 characters long',
-          equalTo: 'Please enter the same password as above'
-        },
-        'signup-terms': 'You must agree to the service terms!'
-      }
     });
   }
 

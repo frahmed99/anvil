@@ -131,7 +131,7 @@
                                     </button>
                                     <div class="mt-4">
                                         <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block"
-                                            href="op_auth_signin2.html">
+                                            href="{{ route('login') }}">
                                             <i class="fa fa-arrow-left opacity-50 me-1"></i> Sign In
                                         </a>
                                     </div>

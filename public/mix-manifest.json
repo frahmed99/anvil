@@ -1,6 +1,7 @@
 {
     "/js/laravel.app.js": "/js/laravel.app.js",
     "/js/codebase.app.js": "/js/codebase.app.js",
+    "/js/pages/op_auth_signup.min.js": "/js/pages/op_auth_signup.min.js",
     "/js/pages/tables_datatables.js": "/js/pages/tables_datatables.js",
     "/js/custom/taxes_validation.min.js": "/js/custom/taxes_validation.min.js",
     "/css/themes/flat.css": "/css/themes/flat.css",

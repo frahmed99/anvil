@@ -132,17 +132,17 @@
                                 </div>
                                 <div class="form-floating mb-4">
                                     <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Enter your email">
+                                        required autofocus placeholder="Enter your email">
                                     <label class="form-label" for="{{ __('Email') }}">Email</label>
                                 </div>
                                 <div class="form-floating mb-4">
                                     <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Enter your password">
+                                        required autofocus placeholder="Enter your password">
                                     <label class="form-label" for="{{ __('Password') }}">Password</label>
                                 </div>
                                 <div class="form-floating mb-4">
                                     <input type="password" class="form-control" id="password_confirmation"
-                                        name="password_confirmation" placeholder="Confirm Password">
+                                        required autofocus name="password_confirmation" placeholder="Confirm Password">
                                     <label class="form-label" for="signup-password-confirm"
                                         value="{{ __('Confirm Password') }}">Confirm Password</label>
                                 </div>
@@ -328,6 +328,10 @@
         assets/js/core/js.cookie.min.js
     -->
     <script src="{{ mix('js/laravel.app.js') }}"></script>
+    <script src="{{ mix('js/codebase.app.js') }}"></script>
+    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/pages/op_auth_signup.min.js') }}"></script>
 
     <!--
         Codebase JS
