@@ -13,6 +13,7 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('invoices');
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('invoice_id');

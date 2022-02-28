@@ -23,9 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('plan')->nullable();
             $table->date('plan_expire_date')->nullable();
-            $table->string('type', 20);
+            $table->string('type', 20)->nullable();;
             $table->string('profile_photo_path', 100)->nullable();
-            $table->string('lang', 100);
+            $table->string('lang', 100)->nullable();;
             $table->integer('created_by')->default(0);
             $table->integer('default_pipeline')->nullable();
             $table->integer('delete_status')->default(1);

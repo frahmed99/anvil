@@ -13,6 +13,7 @@ class CreateProductServiceUnitsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('product_service_units');
         Schema::create('product_service_units', function (Blueprint $table) {
             $table->id();
             $table->string('name');

@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Backend\Sales\EstimateController;
-use App\Http\Controllers\Backend\Sales\InvoicesController;
-use App\Http\Controllers\Backend\Sales\CustomersController;
-use App\Http\Controllers\Backend\Purchases\VendorsController;
 use App\Http\Controllers\Backend\Users\UsersController;
 use App\Http\Controllers\Backend\Users\ProfilesController;
 use App\Http\Controllers\Backend\Settings\SettingsController;

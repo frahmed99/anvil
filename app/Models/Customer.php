@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Wildside\Userstamps\Userstamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    use HasFactory;
+    use HasFactory, Userstamps;
 
     protected $fillable = [
         'customer_id',
@@ -15,10 +16,10 @@ class Customer extends Model
         'email',
         'password',
         'contact',
+        'taxnumber',
         'avatar',
         'is_active',
         'created_by',
-        'email_verified_at',
         'billing_name',
         'billing_country',
         'billing_state',
@@ -33,4 +34,7 @@ class Customer extends Model
         'shipping_phone',
         'shipping_zip',
         'shipping_address',
+
+    ];
 }
+

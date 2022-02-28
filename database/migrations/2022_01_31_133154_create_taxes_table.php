@@ -13,6 +13,7 @@ class CreateTaxesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('taxes');
         Schema::create('taxes', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();

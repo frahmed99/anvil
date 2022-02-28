@@ -13,6 +13,7 @@ class CreateProductServiceCategoriesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('product_service_categories');
         Schema::create('product_service_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');

@@ -13,15 +13,14 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('customers');
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('customer_id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
             $table->string('contact')->nullable();
-            $table->string('avatar', 100)->default('');
-            $table->integer('created_by')->default(0);
+            $table->string('taxnumber');
             $table->integer('is_active')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('billing_name');
@@ -39,6 +38,8 @@ class CreateCustomersTable extends Migration
             $table->string('shipping_zip');
             $table->text('shipping_address');
             $table->string('lang')->default('en');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

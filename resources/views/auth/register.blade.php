@@ -121,13 +121,23 @@
                             <form class="js-validation-signup px-4" action="{{ route('register') }}" method="POST">
                                 @csrf
                                 <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="first_name" name="first_name"
+                                        :value="old('first_name')" required autofocus placeholder="Enter your Name">
+                                    <label class="form-label" for="{{ __('first_name') }}">First Name</label>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="last_name" name="last_name"
+                                        :value="old('last_name')" required autofocus placeholder="Enter your Name">
+                                    <label class="form-label" for="{{ __('last_name') }}">Last Name</label>
+                                </div>
+                                <div class="form-floating mb-4">
                                     <input type="email" class="form-control" id="email" name="email"
                                         placeholder="Enter your email">
                                     <label class="form-label" for="{{ __('Email') }}">Email</label>
                                 </div>
                                 <div class="form-floating mb-4">
-                                    <input type="password" class="form-control" id="password"
-                                        name="password" placeholder="Enter your password">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Enter your password">
                                     <label class="form-label" for="{{ __('Password') }}">Password</label>
                                 </div>
                                 <div class="form-floating mb-4">
@@ -164,18 +174,19 @@
                                         href="{{ route('register') }}">
                                         Create Account
                                     </button>
-                                    <div class="mt-4">
-                                        <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block" href="#"
-                                            data-bs-toggle="modal" data-bs-target="#modal-terms">
-                                            Read Terms
-                                        </a>
-                                        <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block"
-                                            href="{{ route('login') }}">
-                                            Sign In
-                                        </a>
-                                    </div>
                                 </div>
                             </form>
+                            <div class="mt-4">
+                                <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block" href="#"
+                                    data-bs-toggle="modal" data-bs-target="#modal-terms">
+                                    Read Terms
+                                </a>
+                                <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block"
+                                    href="{{ route('login') }}">
+                                    Sign In
+                                </a>
+                            </div>
+
                             <!-- END Sign Up Form -->
                         </div>
                     </div>

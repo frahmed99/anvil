@@ -13,6 +13,7 @@ class CreateEstimatesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('estimates');
         Schema::create('estimates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('proposal_id');

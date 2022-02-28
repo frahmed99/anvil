@@ -65,14 +65,14 @@ class ProfilesController extends Controller
             'newpassword' => 'required|confirmed',
         ]);
 
-        $hashPassword = Auth::user()->password;
-        if (\Hash::check($request->oldpassword, $hashedPassword)) {
+        $hashedPassword = Auth::user()->password;
+        if (Hash::check($request->oldpassword, $hashedPassword)) {
 
-            if (!\Hash::check($request->newpassword, $hashedPassword)) {
+            if (!Hash::check($request->newpassword, $hashedPassword)) {
 
-                $users = admin::find(Auth::user()->id);
+                $users = User::find(Auth::user()->id);
                 $users->password = bcrypt($request->newpassword);
-                admin::where('id', Auth::user()->id)->update(array('password' => $users->password));
+                User::where('id', Auth::user()->id)->update(array('password' => $users->password));
 
                 session()->flash('message', 'password updated successfully');
                 return redirect()->back();
@@ -86,3 +86,4 @@ class ProfilesController extends Controller
         }
 }
 
+}
