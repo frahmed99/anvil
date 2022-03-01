@@ -9,15 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory, Userstamps;
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'customer_id',
         'name',
         'email',
-        'password',
         'contact',
         'taxnumber',
-        'avatar',
+        'email_verified_at',
         'is_active',
         'created_by',
         'billing_name',
@@ -34,7 +34,6 @@ class Customer extends Model
         'shipping_phone',
         'shipping_zip',
         'shipping_address',
-
     ];
 }
 

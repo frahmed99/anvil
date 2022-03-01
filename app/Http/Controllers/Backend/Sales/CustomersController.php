@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Backend\Sales;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
-use Auth;
+use App\Helpers\Helper;
+
 
 class CustomersController extends Controller
 {
@@ -40,32 +40,31 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'CustomerName' => 'required',
-            'CustomerNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'CustomerName' => 'required|string|max:255',
+            'CustomerNumber' => 'required',
             'CustomerTaxNumber' => 'required|digits:10',
-            'BillingCompanyName' => 'unique:customers,billing_name',
-            'ShippingCompanyName' => 'unique: customers, shipping_name',
+            'CustomerEmail' => 'required|unique:customers,email',
         ]);
-
         $customer = new Customer();
-        $customer->customer_id = IdGenerator::generate(['table' => 'customers', 'length' => 10, 'prefix' => 'CUST-']);
         $customer->name = $request->CustomerName;
-        $customer->email= $request->CustomerEmail;
-        $customer->contact= $request->CustomerNumber;
-        $customer->tax_number= $request->CustomerTaxNumber;
-        $customer->billing_name= $request->BillingCompanyName;
-        $customer->billing_country= $request->BillingCompanyCountry;
-        $customer->billing_state= $request->BillingCompanyProvince;
-        $customer->billing_city= $request->BillingCompanyCity;
-        $customer->billing_phone= $request->BillingCompanyNumber;
-        $customer->billing_zip= $request->BillingCompanyPostCode;
-        $customer->billing_address= $request->BillingCompanyAddress;
-        $customer->shipping_name= $request->ShippingCompanyName;
-        $customer->shipping_country= $request->ShippingCompanyCountry;
+        $customer_id = Helper::IDGenerator(new Customer, 'customer_id', 6, 'CUST');
+        $customer->email = $request->CustomerEmail;
+        $customer->customer_id = $customer_id;
+        $customer->contact = $request->CustomerNumber;
+        $customer->taxnumber = $request->CustomerTaxNumber;
+        $customer->billing_name = $request->BillingCompanyName;
+        $customer->billing_country = $request->BillingCompanyCountry;
+        $customer->billing_state = $request->BillingCompanyProvince;
+        $customer->billing_city = $request->BillingCompanyCity;
+        $customer->billing_phone = $request->BillingCompanyNumber;
+        $customer->billing_zip = $request->BillingCompanyPostCode;
+        $customer->billing_address = $request->BillingCompanyAddress;
+        $customer->shipping_name = $request->ShippingCompanyName;
+        $customer->shipping_country = $request->ShippingCompanyCountry;
         $customer->shipping_state = $request->ShippingCompanyProvince;
         $customer->shipping_city = $request->ShippingCountryCity;
-        $customer->shipping_phone= $request->ShippingCompanyNumber;
-        $customer->shipping_zip= $request->ShippingCompanyPostCode;
+        $customer->shipping_phone = $request->ShippingCompanyNumber;
+        $customer->shipping_zip = $request->ShippingCompanyPostCode;
         $customer->shipping_address = $request->ShippingCompanyAddress;
         $customer->save();
 
@@ -120,4 +119,5 @@ class CustomersController extends Controller
     {
         //
     }
+
 }

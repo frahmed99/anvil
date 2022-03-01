@@ -35,6 +35,7 @@ Route::group(
             Route::post('/store', [ProductServiceUnitController::class, 'store'])->name('product_service_unit.store');
             Route::post('/update', [ProductServiceUnitController::class, 'update'])->name('product_service_unit.update');
         });
+        Route::resource('sharks', 'sharkController');
 
         Route::prefix('accounts/customer')->group(function () {
             Route::get('/view', [CustomersController::class, 'index'])->name('customer.view');
@@ -43,6 +44,7 @@ Route::group(
             Route::get('/destroy/{id}', [CustomersController::class, 'destroy'])->name('customer.destroy');
             Route::post('/store', [CustomersController::class, 'store'])->name('customer.store');
             Route::post('/update/{id}', [CustomersController::class, 'update'])->name('customer.update');
+            Route::get('/show/{id}', [CustomersController::class, 'show'])->name('customer.show');
         });
 
         Route::prefix('accounts/vendor')->group(function () {

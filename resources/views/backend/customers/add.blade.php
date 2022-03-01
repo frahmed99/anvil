@@ -20,26 +20,46 @@
                     <div class="form-group row">
                         <div class="col-6 mb-4">
                             <label class="form-label" for="CustomerName">Name</label>
-                            <input type="text" class="form-control is-valid" id="CustomerName" name="CustomerName"
-                                placeholder="Enter Customer Name">
+                            <input type="text" class="form-control @error('CustomerName') is-invalid @enderror"
+                                id="CustomerName" name="CustomerName" placeholder="Enter Customer Name">
+                            <span style="color:red">
+                                @error('CustomerName')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="col-6 mb-4">
                             <label class="form-label" for="CustomerNumber">Phone
                                 Number</label>
-                            <input type="text" class="form-control is-valid" id="CustomerNumber" name="CustomerNumber"
-                                placeholder="+260xxxxxxxxxx">
+                            <input type="text" class="form-control @error('CustomerName') is-invalid @enderror"
+                                id="CustomerNumber" name="CustomerNumber" placeholder="+260xxxxxxxxxx">
+                            <span style="color:red">
+                                @error('CustomerNumber')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-6 mb-4">
                             <label class="form-label" for="CustomerEmail">Email</label>
-                            <input type="email" class="form-control is-valid" id="CustomerEmail" name="CustomerEmail"
-                                placeholder="Enter Customer Email">
+                            <input type="email" class="form-control @error('CustomerEmail') is-invalid @enderror"
+                                id="CustomerEmail" name="CustomerEmail" placeholder="Enter Customer Email">
+                            <span style="color:red">
+                                @error('CustomerEmail')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="col-6 mb-4">
                             <label class="form-label" for="CustomerTaxNumber">Tax Number</label>
-                            <input type="text" class="form-control is-valid" id="CustomerTaxNumber" name="CustomerTaxNumber"
-                                placeholder="Enter Customer Tax Number">
+                            <input type="text" class="form-control @error('CustomerTaxNumber') is-invalid @enderror"
+                                id="CustomerTaxNumber" name="CustomerTaxNumber" placeholder="Enter Customer Tax Number">
+                            <span style="color:red">
+                                @error('CustomerTaxNumber')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                     </div>
                     <div class="block-header bg-gd-primary mb-2">

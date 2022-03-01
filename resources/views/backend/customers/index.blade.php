@@ -6,64 +6,75 @@
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
 @endsection
 @section('admin')
-        <!-- Page Content -->
-        <div class="content">
-            <nav class="breadcrumb push bg-body-extra-light rounded-pill px-4 py-2">
-                <a class="breadcrumb-item" href="{{ route('dashboard') }}">Dashboard</a>
-                <span class="breadcrumb-item active">Customers</span>
-            </nav>
-            <div class="block block-rounded">
-                <div class="block-content">
-                    <h2 class="content-heading d-flex justify-content-between align-items-center">
-                        <span>Customers</span>
-                        <a href="{{ route('customer.create') }}" type="button" class="btn btn-sm btn-alt-primary">
-                            <i class="fa fa-plus opacity-50 me-1"></i> Add Customer
-                        </a>
-                    </h2>
-                </div>
+    <!-- Page Content -->
+    <div class="content">
+        <nav class="breadcrumb push bg-body-extra-light rounded-pill px-4 py-2">
+            <a class="breadcrumb-item" href="{{ route('dashboard') }}">Dashboard</a>
+            <span class="breadcrumb-item active">Customers</span>
+        </nav>
+        <div class="block block-rounded">
+            <div class="block-content">
+                <h2 class="content-heading d-flex justify-content-between align-items-center">
+                    <span>Customers</span>
+                    <a href="{{ route('customer.create') }}" type="button" class="btn btn-sm btn-alt-primary">
+                        <i class="fa fa-plus opacity-50 me-1"></i> Add Customer
+                    </a>
+                </h2>
             </div>
-            <!-- Dynamic Table with Export Buttons -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">
-                        Manage <small>Customers</small>
-                    </h3>
-                </div>
-                <div class="block-content block-content-full">
-                    <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
-                        <thead>
+        </div>
+        <!-- Dynamic Table with Export Buttons -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">
+                    Manage <small>Customers</small>
+                </h3>
+            </div>
+            <div class="block-content block-content-full">
+                <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+                    <thead>
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Name</th>
+                            <th class="d-none d-sm-table-cell">Phone</th>
+                            <th class="d-none d-sm-table-cell">Email</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Balance</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($allData as $key => $customer)
                             <tr>
-                                <th>Name</th>
-                                <th class="d-none d-sm-table-cell">Phone</th>
-                                <th class="d-none d-sm-table-cell">Email</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">Balance</th>
-                                <th class="text-center" style="width: 15%;">Profile</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="fw-semibold">Jose Wagner</td>
-                                <td class="d-none d-sm-table-cell">0962661523</td>
-                                <td class="d-none d-sm-table-cell">customer1@example.com</td>
-                                <td class="d-none d-sm-table-cell">
+                                <td class="fw-semibold">{{ $customer->customer_id }}</td>
+                                <td class="fw-semibold">{{ $customer->name }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $customer->contact }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $customer->email }}</td>
+                                <td class="d-none d-sm-table-cell text-center">
                                     <span class="badge bg-danger">Disabled</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#" type="button" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip"
-                                        title="View Customer">
-                                        <i class="fa fa-user"></i>
-                                </a>
+                                    <div class="btn-group">
+                                        <a type="button" class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled show"
+                                            href="{{ route('customer.show') }}" data-bs-placement="bottom"><i class="fa fa-fw fa-eye"></i></a>
+                                        <a type="button" id="edit"
+                                            class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled"
+                                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit Customer"
+                                            href="href="{{ route('customer.edit') }}"">
+                                            <i class="fa fa-fw fa-edit"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+
+                    </tbody>
+                </table>
             </div>
-            <!-- END Dynamic Table with Export Buttons -->
         </div>
-        </div>
-        <!-- END Page Content -->
+        <!-- END Dynamic Table with Export Buttons -->
+    </div>
+    </div>
+    <!-- END Page Content -->
 @endsection
 
 @section('js_after')
