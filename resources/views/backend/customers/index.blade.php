@@ -31,7 +31,7 @@
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+                <table class="table table-borderless table-striped table-vcenter js-dataTable-buttons">
                     <thead>
                         <tr>
                             <th>Customer ID</th>
@@ -55,11 +55,11 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a type="button" class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled show"
-                                            href="{{ route('customer.show') }}" data-bs-placement="bottom"><i class="fa fa-fw fa-eye"></i></a>
+                                            href="{{ route('customer.show', $customer->id) }}" data-bs-placement="bottom"><i class="fa fa-fw fa-eye"></i></a>
                                         <a type="button" id="edit"
                                             class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled"
                                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit Customer"
-                                            href="href="{{ route('customer.edit') }}"">
+                                            href="{{ route('customer.edit', $customer->id) }}">
                                             <i class="fa fa-fw fa-edit"></i>
                                         </a>
                                     </div>

@@ -110,7 +110,7 @@
                         <div class="mb-4">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" value="" id="ShippingBillingSwitch"
-                                    name="ShippingBillingSwitch" checked="">
+                                    name="ShippingBillingSwitch">
                                 <label class="form-check-label" for="ShippingBillingSwitch">Billing
                                     Address Same As Shipping Address</label>
                             </div>
@@ -157,7 +157,7 @@
                         <div class="mb-4">
                             <label class="form-label" for="ShippingCompanyAddress">Address</label>
                             <textarea class="form-control" id="ShippingCompanyAddress" name="ShippingCompanyAddress"
-                                rows="4" placeholder="Billing Address.."></textarea>
+                                rows="4" placeholder="Shipping Address.."></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -171,4 +171,29 @@
     </div>
     </div>
     <!-- END Page Content -->
+@endsection
+
+@section('js_after')
+    <script>
+        $("#ShippingBillingSwitch").click(function() {
+            if (this.checked) {
+                $("#ShippingCompanyName").val($("#BillingCompanyName").val());
+                $("#ShippingCompanyCountry").val($("#BillingCompanyCountry").val());
+                $("#ShippingCompanyProvince").val($("#BillingCompanyProvince").val());
+                $("#ShippingCountryCity").val($("#BillingCountryCity").val());
+                $("#ShippingCompanyNumber").val($("#BillingCompanyNumber").val());
+                $("#ShippingCompanyPostCode").val($("#BillingCompanyPostCode").val());
+                $("#ShippingCompanyAddress").val($("#BillingCompanyAddress").val());
+            } else {
+                $("#ShippingCompanyName").val('');
+                $("#ShippingCompanyCountry").val('');
+                $("#ShippingCompanyProvince").val('');
+                $("#ShippingCountryCity").val('');
+                $("#ShippingCompanyNumber").val('');
+                $("#ShippingCompanyPostCode").val('');
+                $("#ShippingCompanyAddress").val('');
+
+            }
+        });
+    </script>
 @endsection
