@@ -50,8 +50,7 @@
                                     </div>
                                     <div class="col-2">
                                         <a class="text-pulse" data-toggle="theme"
-                                            data-theme="{{ mix('/css/themes/pulse.css') }}"
-                                            href="javascript:void(0)">
+                                            data-theme="{{ mix('/css/themes/pulse.css') }}" href="javascript:void(0)">
                                             <i class="fa fa-2x fa-circle"></i>
                                         </a>
                                     </div>
@@ -70,8 +69,7 @@
                                     </div>
                                     <div class="col-2">
                                         <a class="text-earth" data-toggle="theme"
-                                            data-theme="{{ mix('/css/themes/earth.css') }}"
-                                            href="javascript:void(0)">
+                                            data-theme="{{ mix('/css/themes/earth.css') }}" href="javascript:void(0)">
                                             <i class="fa fa-2x fa-circle"></i>
                                         </a>
                                     </div>
@@ -99,16 +97,31 @@
                             <div class="px-2 py-3 bg-body-light rounded-top">
                                 <h5 class="h6 text-center mb-0">
                                     {{ Auth::user()->first_name }}
-                            {{ Auth::user()->last_name }}
+                                    {{ Auth::user()->last_name }}
                                 </h5>
                             </div>
                             <div class="p-2">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
+                                    href="{{ route('customer.create') }}">
+                                    <span>New Customer</span>
+                                    <i class="fa fa-fw fa-user opacity-25"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
+                                    href="{{ route('vendor.create') }}">
+                                    <span>New Vendor</span>
+                                    <i class="fa fa-fw fa-user opacity-25"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
+                                    href="{{ route('proposal.create') }}">
+                                    <span>New Quote</span>
+                                    <i class="fa fa-fw fa-user opacity-25"></i>
+                                </a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
                                     href="{{ route('profile.view') }}">
                                     <span>Profile</span>
                                     <i class="fa fa-fw fa-user opacity-25"></i>
                                 </a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
                                     href="{{ route('admin.logout') }}">
                                     <span>Sign Out</span>

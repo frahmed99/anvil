@@ -89,7 +89,6 @@
                 </div>
             </div>
             <!-- END Overview -->
-
             <!-- Addresses -->
             <h2 class="content-heading">Addresses</h2>
             <div class="row">
@@ -100,13 +99,13 @@
                             <h3 class="block-title">Customer Information</h3>
                         </div>
                         <div class="block-content">
-                            <div class="fs-lg mb-1">John Smith</div>
+                            <div class="fs-lg mb-1">{{ $customer->name }}</div>
                             <address>
-                                5110 8th Ave<br>
-                                New York 11220<br>
-                                United States<br><br>
-                                <i class="fa fa-phone me-1"></i> (999) 111-222222<br>
-                                <i class="far fa-envelope me-1"></i> <a href="javascript:void(0)">company@example.com</a>
+                                <br>
+                                <br>
+                                <br><br>
+                                <i class="fa fa-phone me-1"></i>{{ $customer->contact }}<br>
+                                <i class="far fa-envelope me-1"></i> <a href="javascript:void(0)">{{ $customer->email }}</a>
                             </address>
                         </div>
                     </div>
@@ -119,13 +118,14 @@
                             <h3 class="block-title">Billing Address</h3>
                         </div>
                         <div class="block-content">
-                            <div class="fs-lg mb-1">John Smith</div>
+                            <div class="fs-lg mb-1">{{ $customer->billing_name }}</div>
                             <address>
-                                5110 8th Ave<br>
-                                New York 11220<br>
-                                United States<br><br>
-                                <i class="fa fa-phone me-1"></i> (999) 111-222222<br>
-                                <i class="far fa-envelope me-1"></i> <a href="javascript:void(0)">company@example.com</a>
+                                {{ $customer->billing_address }}<br>
+                                {{ $customer->billing_city }}<br>
+                                {{ $customer->billing_zip }}<br>
+                                {{ $customer->billing_country }}<br>
+                                <br>
+                                <i class="fa fa-phone me-1"></i> {{ $customer->billing_phone }}<br>
                             </address>
                         </div>
                     </div>
@@ -139,13 +139,14 @@
                             <h3 class="block-title">Shipping Address</h3>
                         </div>
                         <div class="block-content">
-                            <div class="fs-lg mb-1">John Smith</div>
+                            <div class="fs-lg mb-1">{{ $customer->shipping_name }}</div>
                             <address>
-                                5110 8th Ave<br>
-                                New York 11220<br>
-                                United States<br><br>
-                                <i class="fa fa-phone me-1"></i> (999) 111-222222<br>
-                                <i class="far fa-envelope me-1"></i> <a href="javascript:void(0)">company@example.com</a>
+                                {{ $customer->shipping_address }}<br>
+                                {{ $customer->shipping_city }}<br>
+                                {{ $customer->shipping_zip }}<br>
+                                {{ $customer->shipping_country }}<br>
+                                <br>
+                                <i class="fa fa-phone me-1"></i> {{ $customer->shipping_phone }}<br>
                             </address>
                         </div>
                     </div>
@@ -153,7 +154,6 @@
                 <!-- END Shipping Address -->
             </div>
             <!-- END Addresses -->
-
             <!-- Quotation -->
             <h2 class="content-heading">Quotations</h2>
             <div class="block block-rounded">

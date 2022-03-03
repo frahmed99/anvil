@@ -41,13 +41,15 @@ class CustomersController extends Controller
     {
         $request->validate([
             'CustomerName' => 'required|string|max:255',
-            'CustomerNumber' => 'required',
+            'CustomerNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'CustomerTaxNumber' => 'required|digits:10',
             'CustomerEmail' => 'required|unique:customers,email',
+            'BillingCompanyNumber' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'ShippingCompanyNumber' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ]);
         $customer = new Customer();
         $customer->name = $request->CustomerName;
-        $customer_id = Helper::IDGenerator(new Customer, 'customer_id', 6, 'CUST');
+        $customer_id = Helper::IDGenerator(new Customer, 'customer_id', 'CUST', 6);
         $customer->email = $request->CustomerEmail;
         $customer->customer_id = $customer_id;
         $customer->contact = $request->CustomerNumber;
@@ -81,9 +83,13 @@ class CustomersController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show($id)
     {
-        return view('Backend.Customers.show', $customer);
+        // get the Customer
+        $customer = customer::find($id);
+
+        // show the view and pass the customer to it
+        return view('Backend.Customers.show')->with('customer', $customer);
     }
 
     /**

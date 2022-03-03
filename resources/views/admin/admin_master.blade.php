@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <title>Codebase - Bootstrap 5 Admin Template &amp; UI Framework</title>
+    <title>Anvil Accounting</title>
 
     <meta name="description"
-        content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta name="author" content="pixelcave">
+        content="Anvil Accounting">
+    <meta name="author" content="reachitzm">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Open Graph Meta -->
-    <meta property="og:title" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework">
-    <meta property="og:site_name" content="Codebase">
+    <meta property="og:title" content="Anvil Accounting by Reach IT Zambia">
+    <meta property="og:site_name" content="Anvil">
     <meta property="og:description"
-        content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+        content="Anvil Accounting">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">

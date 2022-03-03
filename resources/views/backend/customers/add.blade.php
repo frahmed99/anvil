@@ -69,34 +69,39 @@
                         <div class="col-4 mb-4">
                             <label class="form-label" for="BillingCompanyName">Company Name</label>
                             <input type="text" class="form-control is-valid" id="BillingCompanyName"
-                                name="BillingCompanyName" placeholder="Enter Company Name">
+                                name="BillingCompanyName" placeholder="Enter Name">
                         </div>
                         <div class="col-4 mb-4">
                             <label class="form-label" for="BillingCompanyCountry">Country</label>
                             <input type="text" class="form-control is-valid" id="BillingCompanyCountry"
-                                name="BillingCompanyCountry" placeholder="Enter Company Country">
+                                name="BillingCompanyCountry" placeholder="Enter Country">
                         </div>
                         <div class="col-4 mb-4">
                             <label class="form-label" for="BillingCompanyProvince">Province</label>
                             <input type="text" class="form-control is-valid" id="BillingCompanyProvince"
-                                name="BillingCompanyProvince" placeholder="Enter Company Province">
+                                name="BillingCompanyProvince" placeholder="Enter Province">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-4 mb-4">
                             <label class="form-label" for="BillingCountryCity">City</label>
                             <input type="text" class="form-control is-valid" id="BillingCountryCity"
-                                name="BillingCompanyCity" placeholder="Enter Company City">
+                                name="BillingCompanyCity" placeholder="Enter City">
                         </div>
                         <div class="col-4 mb-4">
                             <label class="form-label" for="BillingCompanyNumber">Phone Number</label>
                             <input type="text" class="form-control is-valid" id="BillingCompanyNumber"
-                                name="BillingCompanyNumber" placeholder="09xxxxxxxx">
+                                name="BillingCompanyNumber" placeholder="Enter Phone Number">
+                                                            <span style="color:red">
+                                @error('BillingCompanyNumber')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="col-4 mb-4">
                             <label class="form-label" for="BillingCompanyPostCode">Postal Code</label>
                             <input type="text" class="form-control is-valid" id="BillingCompanyPostCode"
-                                name="BillingCompanyPostCode" placeholder="Enter Company Zip Code">
+                                name="BillingCompanyPostCode" placeholder="Enter  Zip Code">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -123,34 +128,39 @@
                         <div class="col-4 mb-4">
                             <label class="form-label" for="ShippingCompanyName">Company Name</label>
                             <input type="text" class="form-control is-valid" id="ShippingCompanyName"
-                                name="ShippingCompanyName" placeholder="Enter Company Name">
+                                name="ShippingCompanyName" placeholder="Enter Name">
                         </div>
                         <div class="col-4 mb-4">
                             <label class="form-label" for="ShippingCompanyCountry">Country</label>
                             <input type="text" class="form-control is-valid" id="ShippingCompanyCountry"
-                                name="ShippingCompanyCountry" placeholder="Enter Company Country">
+                                name="ShippingCompanyCountry" placeholder="Enter Country">
                         </div>
                         <div class="col-4 mb-4">
                             <label class="form-label" for="ShippingCompanyProvince">Province</label>
                             <input type="text" class="form-control is-valid" id="ShippingCompanyProvince"
-                                name="ShippingCompanyProvince" placeholder="Enter Company Province">
+                                name="ShippingCompanyProvince" placeholder="Enter Province">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-4 mb-4">
                             <label class="form-label" for="ShippingCountryCity">City</label>
                             <input type="text" class="form-control is-valid" id="ShippingCountryCity"
-                                name="ShippingCountryCity" placeholder="Enter Company City">
+                                name="ShippingCountryCity" placeholder="Enter City">
                         </div>
                         <div class="col-4 mb-4">
-                            <label class="form-label" for="ShippingCompanyNumber">Phone Number</label>
+                            <label class="form-label" for="ShippingCompanyNumber">City</label>
                             <input type="text" class="form-control is-valid" id="ShippingCompanyNumber"
-                                name="ShippingCompanyNumber" placeholder="09xxxxxxxx">
+                                name="ShippingCompanyNumber" placeholder="Phone Number">
+                                                            <span style="color:red">
+                                @error('ShippingCompanyNumber')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="col-4 mb-4">
                             <label class="form-label" for="ShippingCompanyPostCode">Postal Code</label>
                             <input type="text" class="form-control is-valid" id="ShippingCompanyPostCode"
-                                name="ShippingCompanyPostCode" placeholder="Enter Company Zip Code">
+                                name="ShippingCompanyPostCode" placeholder="Enter Zip Code">
                         </div>
                     </div>
                     <div class="form-group row">

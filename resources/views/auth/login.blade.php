@@ -104,7 +104,7 @@
                         <div class="content content-full">
                             <!-- Header -->
                             <div class="px-4 py-2 mb-4">
-                                <a class="link-fx fw-bold" href="index.html">
+                                <a class="link-fx fw-bold" href="#">
                                     <i class="fa fa-fire"></i>
                                     <span class="fs-4 text-body-color">anvil</span><span
                                         class="fs-4">ERP</span>
