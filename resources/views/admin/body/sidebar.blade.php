@@ -64,9 +64,7 @@
                             </a>
                             <ul class="list-inline mt-3 mb-0">
                                 <li class="list-inline-item">
-                                    <a class="link-fx text-dual fs-sm fw-semibold text-uppercase"
-                                        href="{{ Auth::user()->name }}">{{ Auth::user()->first_name }}
-                                        {{ Auth::user()->last_name }}</a>
+                                    <a class="link-fx text-dual fs-sm fw-semibold text-uppercase">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
                                 </li>
                                 <li class="list-inline-item">
                                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->

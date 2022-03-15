@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\Purchases;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Helpers\Helper;
 
 class VendorsController extends Controller
 {
@@ -38,7 +38,42 @@ class VendorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'VendorName' => 'required|string|max:255',
+            'VendorNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'VendorTaxNumber' => 'required|digits:10',
+            'VendorEmail' => 'required|unique:vendors,email',
+            'BillingCompanyNumber' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'ShippingCompanyNumber' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+        ]);
+        $vendor = new Vendor();
+        $vendor->name = $request->VendorName;
+        $vendor_id = Helper::IDGenerator(new Vendor, 'vendor_id', 'VEND', 6);
+        $vendor->email = $request->VendorEmail;
+        $vendor->vendor_id = $vendor_id;
+        $vendor->contact = $request->VendorNumber;
+        $vendor->taxnumber = $request->VendorTaxNumber;
+        $vendor->billing_name = $request->BillingCompanyName;
+        $vendor->billing_country = $request->BillingCompanyCountry;
+        $vendor->billing_state = $request->BillingCompanyProvince;
+        $vendor->billing_city = $request->BillingCompanyCity;
+        $vendor->billing_phone = $request->BillingCompanyNumber;
+        $vendor->billing_zip = $request->BillingCompanyPostCode;
+        $vendor->billing_address = $request->BillingCompanyAddress;
+        $vendor->shipping_name = $request->ShippingCompanyName;
+        $vendor->shipping_country = $request->ShippingCompanyCountry;
+        $vendor->shipping_state = $request->ShippingCompanyProvince;
+        $vendor->shipping_city = $request->ShippingCountryCity;
+        $vendor->shipping_phone = $request->ShippingCompanyNumber;
+        $vendor->shipping_zip = $request->ShippingCompanyPostCode;
+        $vendor->shipping_address = $request->ShippingCompanyAddress;
+        $vendor->save();
+
+        $notification = array(
+            'message' => 'Vendor Added Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('vendor.view')->with($notification);
     }
 
     /**
@@ -47,9 +82,13 @@ class VendorsController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function show(Vendor $vendor)
+    public function show($id)
     {
-        return view('Backend.Vendors.show', $vendor);
+        // get the Vendor
+        $vendor = vendor::find($id);
+
+        // show the view and pass the vendor to it
+        return view('Backend.Vendors.show')->with('vendor', $vendor);
     }
 
     /**

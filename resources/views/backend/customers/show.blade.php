@@ -105,7 +105,8 @@
                                 <br>
                                 <br><br>
                                 <i class="fa fa-phone me-1"></i>{{ $customer->contact }}<br>
-                                <i class="far fa-envelope me-1"></i> <a href="javascript:void(0)">{{ $customer->email }}</a>
+                                <i class="far fa-envelope me-1"></i> <a
+                                    href="javascript:void(0)">{{ $customer->email }}</a>
                             </address>
                         </div>
                     </div>
@@ -171,7 +172,7 @@
                                 <th>Issue Date</th>
                                 <th class="d-none d-sm-table-cell">Amount</th>
                                 <th class="d-none d-sm-table-cell text-center">Status</th>
-                                <th class="d-none d-sm-table-cell text-center">Actions</th>
+                                <th class="text-center" style="width: 100px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

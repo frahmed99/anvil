@@ -54,6 +54,7 @@ Route::group(
             Route::get('/destroy/{id}', [VendorsController::class, 'destroy'])->name('vendor.destroy');
             Route::post('/store', [VendorsController::class, 'store'])->name('vendor.store');
             Route::post('/update/{id}', [VendorsController::class, 'update'])->name('vendor.update');
+            Route::get('/show/{id}', [VendorsController::class, 'show'])->name('vendor.show');
         });
 
         Route::prefix('accounts/quotations')->group(function () {

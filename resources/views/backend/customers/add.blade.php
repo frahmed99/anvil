@@ -92,7 +92,7 @@
                             <label class="form-label" for="BillingCompanyNumber">Phone Number</label>
                             <input type="text" class="form-control is-valid" id="BillingCompanyNumber"
                                 name="BillingCompanyNumber" placeholder="Enter Phone Number">
-                                                            <span style="color:red">
+                            <span style="color:red">
                                 @error('BillingCompanyNumber')
                                     {{ $message }}
                                 @enderror
@@ -148,10 +148,10 @@
                                 name="ShippingCountryCity" placeholder="Enter City">
                         </div>
                         <div class="col-4 mb-4">
-                            <label class="form-label" for="ShippingCompanyNumber">City</label>
+                            <label class="form-label" for="ShippingCompanyNumber">Phone Number</label>
                             <input type="text" class="form-control is-valid" id="ShippingCompanyNumber"
                                 name="ShippingCompanyNumber" placeholder="Phone Number">
-                                                            <span style="color:red">
+                            <span style="color:red">
                                 @error('ShippingCompanyNumber')
                                     {{ $message }}
                                 @enderror
