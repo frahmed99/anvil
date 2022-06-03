@@ -80,7 +80,7 @@
                                     @forelse ($allData as $key => $unit)
                                         <tr>
                                             <td class="fw-semibold">
-                                                <a>{{ ucfirst($unit->name )}}</a>
+                                                <a>{{ ucfirst($unit->name) }}</a>
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group">

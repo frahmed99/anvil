@@ -59,32 +59,6 @@ class ProductCategoryController extends Controller
         return redirect()->route('product_service_category.view')->with($notification);
     }
 
-    // public function update(Request $data)
-    // {
-    //     $this->validate(
-    //         $data,
-    //         [
-    //             'edit_category_name' => 'required|max:255',
-    //             'edit_category_select' => 'required',
-    //             'edit_category_color' => 'required'
-    //         ],
-    //         [
-    //             'edit_category_name.required' => 'The Category Name Is Required',
-    //             'edit_category_select.required' => 'Category Type Is Required',
-    //             'edit_category_color.required' => 'Color Is Required',
-    //         ]
-    //     );
-
-    //     $arr["name"] = $data->edit_category_name;
-    //     $arr["type"] = $data->edit_category_select;
-    //     $arr["color"] = $data->edit_category_color;
-    //     $fire = DB::table("product_service_categories")->where("id", $data->id)->update($arr);
-    //     $notification = array(
-    //         'message' => 'Category Updated Successfully',
-    //         'alert-type' => 'success'
-    //     );
-    //     return redirect()->route('product_service_category.view')->with($notification);
-    // }
     function fetch(Request $request)
     {
         $sel = DB::table("product_service_categories")->find($request->id);
@@ -96,19 +70,19 @@ class ProductCategoryController extends Controller
         $this->validate(
             $request,
             [
-                'edit_category_name' => 'required|string|max:255',
-                'edit_category_select' => 'required',
-                'edit_category_color' => 'required'
+                'category_nameEdit' => 'required|string|max:255',
+                'category_selectEdit' => 'required',
+                'category_colorEdit' => 'required'
             ],
             [
-                'edit_category_name.required' => 'The Category Name Is Required',
-                'edit_category_select.required' => 'Category Type Is Required',
-                'edit_category_color.required' => 'Color Is Required',
+                'category_nameEdit.required' => 'The Category Name Is Required',
+                'category_selectEdit.required' => 'Category Type Is Required',
+                'category_colorEdit.required' => 'Color Is Required',
             ]
         );
-        $arr["name"] = $request->edit_category_name;
-        $arr["type"] = $request->edit_category_select;
-        $arr["color"] = $request->edit_category_color;
+        $arr["name"] = $request->category_nameEdit;
+        $arr["type"] = $request->category_selectEdit;
+        $arr["color"] = $request->category_colorEdit;
         $upd = DB::table("product_service_categories")->where("id", $request->idcategories)->update($arr);
         if ($upd) {
             $res["status"] = 1;

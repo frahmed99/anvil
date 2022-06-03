@@ -46,9 +46,11 @@
                                                 class="form-control @error('category_name') is-invalid @enderror"
                                                 id="category_name" name="category_name" placeholder="Category Name">
                                         </div>
-                                        <span style="color:red">@error('category_name')
+                                        <span style="color:red">
+                                            @error('category_name')
                                                 {{ $message }}
-                                            @enderror</span>
+                                            @enderror
+                                        </span>
                                     </div>
                                     <div class="col-md-4">
                                         <select class="form-select @error('category_select') is-invalid @enderror"
@@ -108,9 +110,9 @@
                                                 <div class="btn-group">
                                                     <!-- /Edit Category Button-->
                                                     <a type="button"
-                                                        class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled edit"
-                                                        href="#editCategoryModal{{ $category->id }}"
-                                                        data-bs-placement="bottom" data-bs-toggle="modal"><i
+                                                        class="btn btn-sm btn-alt-primary me-1 js-bs-tooltip-enabled"
+                                                        href="javascript:void(0)"
+                                                        onclick="fetch('{{ $category->id }}')"><i
                                                             class="fa fa-fw fa-edit"></i></a>
                                                     <!-- /Delete Category Button -->
                                                     <a type="button"
@@ -123,103 +125,6 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <div class="modal" id="editCategoryModal{{ $category->id }}"
-                                            tabindex="-1" role="dialog" aria-labelledby="editCategoryModal{{ $category->id }}" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="block mb-0 shadow-none block-rounded">
-                                                        <div class="block-header block-header-default">
-                                                            <h3 class="block-title"><small>EDIT</small> CATEGORY</h3>
-                                                            <div class="block-options">
-                                                                <button type="button" class="btn-block-option"
-                                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                                    <i class="fa fa-times"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="block-content fs-sm">
-                                                            <form action="{{ route('product_service_category.update') }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <input type="hidden" name="id"
-                                                                    value="{{ $category->id }}">
-                                                                <div class="mb-4">
-                                                                    <div class="form-floating">
-                                                                        <input type="text" class="form-control @error('edit_category_name') is-invalid @enderror"
-                                                                            id="edit_category_name"
-                                                                            name="edit_category_name"
-                                                                            value="{{ $category->name }}">
-                                                                        @error('edit_category_name')
-                                                                            <span class="invalid-feedback" role="alert">
-                                                                                <strong>{{ $message }}</strong>
-                                                                            </span>
-                                                                        @enderror
-                                                                        <label class="form-label"
-                                                                            for="edit_category_name">Category Name</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mb-4">
-                                                                    <div class="form-floating">
-                                                                        <select class="form-select @error('edit_category_select') is-invalid @enderror"
-                                                                            id="edit_category_select"
-                                                                            name="edit_category_select" required>
-                                                                            <option
-                                                                                @if (old('edit_category_select', $category->type) == 'Product') selected @endif>
-                                                                                Product
-                                                                            </option>
-                                                                            <option
-                                                                                @if (old('edit_category_select', $category->type) == 'Services') selected @endif>
-                                                                                Services
-                                                                            </option>
-                                                                            <option
-                                                                                @if (old('edit_category_select', $category->type) == 'Income') selected @endif>
-                                                                                Income</option>
-                                                                            <option
-                                                                                @if (old('edit_category_select', $category->type) == 'Expense') selected @endif>
-                                                                                Expense
-                                                                            </option>
-                                                                        </select>
-                                                                        @error('edit_category_select')
-                                                                            <span class="invalid-feedback" role="alert">
-                                                                                <strong>{{ $message }}</strong>
-                                                                            </span>
-                                                                        @enderror
-                                                                        <label class="form-label"
-                                                                            for="edit_category_select">Category Type</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mb-4">
-                                                                    <div class="form-floating">
-                                                                        <div class="input-group" id="editColorPicker">
-                                                                            <input type="text" class="form-control input-lg @error('edit_category_color') is-invalid @enderror"
-                                                                                value="{{ $category->color }}"
-                                                                                id="edit_category_color"
-                                                                                name="edit_category_color" required>
-                                                                            <span class="input-group-append">
-                                                                                <span
-                                                                                    class="input-group-text colorpicker-input-addon"><i></i></span>
-                                                                            </span>
-                                                                            @error('edit_category_color')
-                                                                                <span class="invalid-feedback" role="alert">
-                                                                                    <strong>{{ $message }}</strong>
-                                                                                </span>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-alt-secondary"
-                                                                data-bs-dismiss="modal">
-                                                                Close
-                                                            </button>
-                                                            <input type="submit" class="btn btn-alt-primary" value="Save">
-                                                        </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -232,6 +137,75 @@
         </div>
     </main>
     <!-- END Main Container -->
+    <!-- Edit Modal Start -->
+
+    <div class="modal" id="editModalCategories" tabindex="-1" role="dialog" aria-labelledby="editModalCategories"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="block mb-0 shadow-none block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title"><small>EDIT</small> CATEGORY</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content fs-sm">
+                        <form enctype="multipart/form-data" id="formEditcategories">
+                            @csrf
+                            <p style="color:#FA0000" id="msgEditcategories"></p>
+                            <input type="hidden" name="idcategories" id="idcategories">
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="category_nameEdit"
+                                        name="category_nameEdit" placeholder="Name">
+                                    <label class="form-label" for="category_nameEdit">Category Name</label>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <select class="form-select" id="category_selectEdit" name="category_selectEdit">
+                                        <option @if (old('category_selectEdit', $category->type) == 'Product') selected @endif>
+                                            Product
+                                        </option>
+                                        <option @if (old('category_selectEdit', $category->type) == 'Services') selected @endif>
+                                            Services
+                                        </option>
+                                        <option @if (old('category_selectEdit', $category->type) == 'Income') selected @endif>
+                                            Income</option>
+                                        <option @if (old('category_selectEdit', $category->type) == 'Expense') selected @endif>
+                                            Expense
+                                        </option>
+                                    </select>
+                                    <label class="form-label" for="category_selectEdit">Category Type</label>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <div class="input-group" id="editColorPicker">
+                                        <input type="text" class="form-control input-lg" 
+                                            id="category_colorEdit" name="category_colorEdit">
+                                        <span class="input-group-append">
+                                            <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-alt-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn btn-alt-primary" value="Save">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal End -->
 @endsection
 @section('js_after')
     <!-- jQuery (required for DataTables plugin) -->
@@ -263,11 +237,77 @@
                 .colorpicker();
         });
     </script>
-    @if (count($errors) > 0)
+    @if (count($errors) > 0 && ($errors->has('category_name') || $errors->has('category_select')))
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#editCategoryModal{{ $category->id }}').modal('show');
+                Codebase.block('open', '#cb-add-category');
             });
         </script>
     @endif
+
+    {{-- Script For Edit Modal Open And Display Old Data --}}
+    <script>
+        function fetch($id) {
+            $.ajax({
+                url: "{{ route('product_service_category.fetch') }}",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    id: $id,
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    $("#category_nameEdit").val(response.name);
+                    $("#category_selectEdit").val(response.type);
+                    $("#category_colorEdit").val(response.color);
+                    $("#idcategories").val(response.id);
+                    $("#editModalCategories").modal("show");
+                }
+            });
+        }
+    </script>
+
+    <script>
+        $("#formEditcategories").submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                url: "{{ route('product_service_category.update') }}",
+                method: "POST",
+                dataType: "json",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function(response) {
+                    $("#msgEditcategories").html("");
+                    if (response.status == 0)
+                        $("#msgEditcategories").html(response.msg);
+                    else {
+                        toastr.success('Successfully Updated Unit!', 'Success Alert', {
+                            timeOut: 5000
+                        });
+                        location.reload();
+                        $("#editModalCategories").modal("hide");
+                    }
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                error: function(error) {
+                    console.log(error)
+                    var response = JSON.parse(error.responseText);
+                    var errorString = "<ul>";
+                    $.each(response.errors, function(key, value) {
+                        $("#" + key).addClass("is-invalid");
+                        errorString += "<li>" + value + "</li>";
+                    });
+                    errorString += "</ul>";
+                    $("#msgEditcategories").html(errorString);
+                }
+            });
+        });
+    </script>
 @endsection
