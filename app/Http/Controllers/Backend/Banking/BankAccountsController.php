@@ -16,7 +16,8 @@ class BankAccountsController extends Controller
      */
     public function index()
     {
-        //
+        $data['allData'] = BankAccounts::all();
+        return view('Backend.Banking.index', $data);
     }
 
     /**

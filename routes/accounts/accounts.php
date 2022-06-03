@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\Accounts\Settings\ProductServiceUnitController;
 use App\Http\Controllers\backend\Sales\CustomersController;
 use App\Http\Controllers\backend\Purchases\VendorsController;
 use App\Http\Controllers\backend\Sales\ProposalController;
+use App\Http\Controllers\backend\Banking\BankAccountsController;
 
 Route::group(
     ['middleware' => 'prevent-back-history'],
@@ -19,23 +20,25 @@ Route::group(
             Route::get('/view', [TaxesController::class, 'index'])->name('tax.view');
             Route::get('/destroy/{id}', [TaxesController::class, 'destroy'])->name('tax.destroy');
             Route::post('/store', [TaxesController::class, 'store'])->name('tax.store');
-            Route::post('/update', [TaxesController::class, 'update'])->name('tax.update');
+            Route::post('/taxes/update/', [TaxesController::class, 'updateTaxes'])->name('taxes.update');
+            Route::post('/fetch', [TaxesController::class, 'fetchTaxes'])->name('taxes.fetch');
         });
 
         Route::prefix('accounts/settings/product_service_category')->group(function () {
             Route::get('/view', [ProductCategoryController::class, 'index'])->name('product_service_category.view');
             Route::get('/destroy/{id}', [ProductCategoryController::class, 'destroy'])->name('product_service_category.destroy');
             Route::post('/store', [ProductCategoryController::class, 'store'])->name('product_service_category.store');
-            Route::post('/update', [ProductCategoryController::class, 'update'])->name('product_service_category.update');
+            Route::post('/categories/update/', [ProductCategoryController::class, 'update'])->name('product_service_category.update');
+            Route::post('/fetch', [ProductCategoryController::class, 'fetch'])->name('product_service_category.fetch');
         });
 
         Route::prefix('accounts/settings/product_service_unit')->group(function () {
             Route::get('/view', [ProductServiceUnitController::class, 'index'])->name('product_service_unit.view');
             Route::get('/destroy/{id}', [ProductServiceUnitController::class, 'destroy'])->name('product_service_unit.destroy');
             Route::post('/store', [ProductServiceUnitController::class, 'store'])->name('product_service_unit.store');
-            Route::post('/update', [ProductServiceUnitController::class, 'update'])->name('product_service_unit.update');
+            Route::post('/units/update', [ProductServiceUnitController::class, 'update'])->name('product_service_unit.update');
+            Route::post('/fetch', [ProductServiceUnitController::class, 'fetch'])->name('product_service_unit.fetch');
         });
-        Route::resource('sharks', 'sharkController');
 
         Route::prefix('accounts/customer')->group(function () {
             Route::get('/view', [CustomersController::class, 'index'])->name('customer.view');
@@ -64,6 +67,15 @@ Route::group(
             Route::get('/destroy/{id}', [ProposalController::class, 'destroy'])->name('proposal.destroy');
             Route::post('/store', [ProposalController::class, 'store'])->name('proposal.store');
             Route::post('/update/{id}', [ProposalController::class, 'update'])->name('proposal.update');
+        });
+
+        Route::prefix('accounts/bankaccounts')->group(function () {
+            Route::get('/view', [BankAccountsController::class, 'index'])->name('bankaccount.view');
+            Route::get('/create', [BankAccountsController::class, 'create'])->name('bankaccount.create');
+            Route::get('/edit/{id}', [BankAccountsController::class, 'edit'])->name('bankaccount.edit');
+            Route::get('/destroy/{id}', [BankAccountsController::class, 'destroy'])->name('bankaccount.destroy');
+            Route::post('/store', [BankAccountsController::class, 'store'])->name('bankaccount.store');
+            Route::post('/update/{id}', [BankAccountsController::class, 'update'])->name('bankaccount.update');
         });
     }
 );

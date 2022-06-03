@@ -6,6 +6,7 @@ use App\Models\Taxes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class TaxesController extends Controller
 {
@@ -20,18 +21,22 @@ class TaxesController extends Controller
         return view('backend.accounts.settings.taxes.view_tax', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'category_name' => 'required|string|max:255|unique:taxes,name',
-            'tax_rate' => 'required|numeric|between:0,100',
-        ]);
+        $request->validate(
+            [
+                'tax_name' => 'required|string|max:255|unique:taxes,name',
+                'tax_rate' => 'required|numeric|between:0,100',
+            ],
+            [
+                'tax_name.required' => 'The Tax Name Is Required',
+                'tax_name.unique' => 'Tax Already Exists',
+                'tax_rate.numeric' => 'Tax Rate Must Be a Number in Percentage',
+                'tax_rate.required' => 'Tax Value Is Required',
+                'tax_rate.numeric' => 'Tax Value Must be and Integer',
+                'tax_rate.between:0,100' => 'Tax Value Must Be Between 0 and 100',
+            ]
+        );
 
         $data = new Taxes();
         $data->name = $request->tax_name;
@@ -46,37 +51,6 @@ class TaxesController extends Controller
         return redirect()->route('tax.view')->with($notification);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Taxes  $taxes
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $data)
-    {
-       $this->validate($data, [
-            'edit_tax_name' => 'required|max:255',
-            'edit_tax_rate' => 'required|numeric|between:0,100'
-        ]);
-
-        $arr["name"] = $data->edit_tax_name;
-        $arr["rate"] = $data->edit_tax_rate;
-        $fire = DB::table("taxes")->where("id", $data->id)->update($arr);
-        $notification = array(
-            'message' => 'Tax Updated Successfully',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('tax.view')->with($notification);
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Taxes  $taxes
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $tax = Taxes::find($id);
@@ -88,5 +62,41 @@ class TaxesController extends Controller
         );
 
         return redirect()->route('tax.view')->with($notification);
+    }
+
+    function fetchTaxes(Request $request)
+    {
+        $sel = DB::table("Taxes")->find($request->id);
+        echo json_encode($sel);
+    }
+
+    function updateTaxes(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'tax_nameEdit' => 'required|max:255',
+                'tax_rateEdit' => 'required|numeric|between:0,100'
+            ],
+            [
+                'tax_nameEdit.required' => 'The Tax Name Is Required',
+                'tax_nameEdit.unique' => 'Tax Already Exists',
+                'tax_rateEdit.numeric' => 'Tax Rate Must Be a Number in Percentage',
+                'tax_rateEdit.required' => 'Tax Value Is Required',
+                'tax_rateEdit.between:0,100' => 'Tax Value Must Be Between 0 and 100',
+            ]
+        );
+        $arr["name"] = $request->tax_nameEdit;
+        $arr["rate"] = $request->tax_rateEdit;
+        $upd = DB::table("taxes")->where("id", $request->idtaxes)->update($arr);
+        if ($upd) {
+            $res["status"] = 1;
+            $res["title"] = "Updated";
+            $res["msg"] = "Tax updated successfully ";
+        } else {
+            $res["status"] = 0;
+            $res["msg"] = "Unable to update taxes";
+        }
+        echo json_encode($res);
     }
 }

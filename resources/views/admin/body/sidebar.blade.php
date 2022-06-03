@@ -148,7 +148,7 @@
                                         <ul class="nav-main-submenu">
                                             <li class="nav-main-item">
                                                 <a class="nav-main-link{{ request()->is('banking/bankaccounts') ? ' active' : '' }}"
-                                                    href="#">
+                                                    href="{{ route('bankaccount.view') }}">
                                                     <span class="nav-main-link-name">Bank Accounts</span>
                                                 </a>
                                             </li>

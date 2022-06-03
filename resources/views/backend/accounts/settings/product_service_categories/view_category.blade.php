@@ -13,7 +13,7 @@
     <main id="main-container">
         <!-- Page Content -->
         <div class="content">
-            <nav class="breadcrumb push bg-body-extra-light rounded-pill px-4 py-2">
+            <nav class="px-4 py-2 breadcrumb push bg-body-extra-light rounded-pill">
                 <a class="breadcrumb-item" href="{{ route('dashboard') }}">Dashboard</a>
                 <span class="breadcrumb-item active">Categories</span>
             </nav>
@@ -23,7 +23,7 @@
                         <span>Categories</span>
                         <button type="button" class="btn btn-sm btn-alt-primary"
                             onclick="Codebase.block('open', '#cb-add-category');">
-                            <i class="fa fa-plus opacity-50 me-1"></i> Add Category
+                            <i class="opacity-50 fa fa-plus me-1"></i> Add Category
                         </button>
                     </h2>
                     <div id="cb-add-category" class="block block-rounded bg-body-light animated fadeIn d-none">
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <button type="submit" class="btn btn-alt-success w-100">
-                                            <i class="fa fa-plus opacity-50 me-1"></i> Add Category
+                                            <i class="opacity-50 fa fa-plus me-1"></i> Add Category
                                         </button>
                                     </div>
                                 </div>
@@ -124,10 +124,10 @@
                                             </td>
                                         </tr>
                                         <div class="modal" id="editCategoryModal{{ $category->id }}"
-                                            tabindex="-1" role="dialog" aria-labelledby="modal-normal" aria-hidden="true">
+                                            tabindex="-1" role="dialog" aria-labelledby="editCategoryModal{{ $category->id }}" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
-                                                    <div class="block block-rounded shadow-none mb-0">
+                                                    <div class="block mb-0 shadow-none block-rounded">
                                                         <div class="block-header block-header-default">
                                                             <h3 class="block-title"><small>EDIT</small> CATEGORY</h3>
                                                             <div class="block-options">

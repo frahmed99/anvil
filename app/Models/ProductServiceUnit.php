@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProductServiceUnit extends Model
 {
     use HasFactory;
+    use Userstamps;
+
+    protected $fillable = [
+        'name',
+    ];
 }
